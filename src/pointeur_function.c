@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** pointeur_functio
+** 42sh
 ** File description:
 ** pointeur_function
 */

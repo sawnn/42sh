@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** epure
+** 42sh
 ** File description:
-** epure
+** epur_str
 */
 
 #include "../include/my_minishell.h"

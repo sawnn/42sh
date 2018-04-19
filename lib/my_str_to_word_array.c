@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** str
+** 42sh
 ** File description:
-** str
+** no_param
 */
 
 #include "../include/my_minishell.h"

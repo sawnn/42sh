@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** ok
+** 42sh
 ** File description:
-** ok
+** pipe
 */
 
 #include "../include/my_minishell.h"

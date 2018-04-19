@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** ok
+** 42sh
 ** File description:
-** ok
+** redeirect
 */
 
 #include "../include/my_minishell.h"

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** path
+** 42sh
 ** File description:
 ** path
 */

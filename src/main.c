@@ -1,21 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** main
+** 42sh
 ** File description:
 ** main
 */
 
 #include "../include/my_minishell.h"
-
-int	length_tab(char **tab)
-{
-	int	i = 0;
-
-	while (tab[i] != NULL) {
-		i = i + 1;
-	}
-	return (i);
-}
 
 int	my_exit(t_mini *mini)
 {
@@ -30,8 +20,21 @@ int	my_exit(t_mini *mini)
 		return (my_getnbr(mini->exit[1]));
 }
 
+void	sig(int signo)
+{
+	if (signo == SIGINT)
+		if (isatty(0) == 1)
+			my_printf("\n\033[1m\033[32m→ 21sh: \033[0m");
+}
+
+void	check_signals(void)
+{
+	signal(SIGINT, sig);
+}
+
 int	minishell(t_mini *mini, node **head)
 {
+	check_signals();
 	while (1337) {
 		my_prompt(mini);
 		if (mini->buf == NULL)

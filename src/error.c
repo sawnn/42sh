@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** error
+** 42sh
 ** File description:
-** error
+** handle_error
 */
 
 #include "../include/my_minishell.h"

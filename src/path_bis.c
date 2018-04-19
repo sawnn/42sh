@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** path
+** 42sh
 ** File description:
 ** path
 */
@@ -41,7 +41,8 @@ void	call_argument(t_mini *mini, node **head)
 
 int	buff_null(t_mini *mini)
 {
-	write(0, "exit\n", 5);
+	if (isatty(0) == 1)
+		write(1, "exit\n", 5);
 	return (mini->global);
 }
 
@@ -53,6 +54,7 @@ void	is_error_exit(t_mini *mini)
 
 void	my_prompt(t_mini *mini)
 {
-	write(0, "$>", 2);
+	if (isatty(0) == 1)
+		my_printf("\033[1m\033[32m→ 21sh: \033[0m");
 	mini->buf = get_next_line(0);
 }

@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** uti
+** 42sh
 ** File description:
-** uti
+** cd
 */
 
 #include "../include/my_minishell.h"

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2018
-** ok
+** 42sh
 ** File description:
 ** ok
 */

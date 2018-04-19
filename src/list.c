@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2017
-** list
+** 42sh
 ** File description:
 ** list
 */

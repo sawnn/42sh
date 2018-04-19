@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** uti
+** 42sh
 ** File description:
-** uti
+** Setenv_Unsetenv_funcs
 */
 
 #include "../include/my_minishell.h"
@@ -56,19 +56,24 @@ void	my_setenv(t_mini *mini, node **head)
 		add_setenv(mini, head);
 }
 
-int	check_built(t_mini *mini, node **head)
+void	my_unsetenv(t_mini *mini, node **head)
 {
-	save_env(mini, head);
-	if (my_strcmp(mini->tab[0], "env") == 0)
-		return (my_call_env(mini, head));
-	else if (my_strcmp(mini->tab[0], "setenv") == 0)
-		return (my_call_setenv(mini, head));
-	else {
-		if (my_strcmp(mini->tab[0], "unsetenv") == 0)
-			return (my_call_unsetenv(mini, head));
-		else if (my_strcmp(mini->tab[0], "cd") == 0)
-			return (my_call_cd(mini, head));
+	node	*tmp = (*head);
+	char	*s2;
+	int	i = 1;
+	int	j = 1;
+
+	while (mini->tab[j] != NULL) {
+		s2 = my_strcat(mini->tab[j], "=");
+		while (tmp != NULL) {
+			if (my_strncmp(tmp->str, s2, my_strlen(s2)) == 0)
+				delete_node(head, i);
+			else
+				i = i + 1;
+			tmp = tmp->next;
+		}
+		i = 1;
+		j = j + 1;
+		tmp = (*head);
 	}
-	mini->global = -1;
-	return (mini->global);
 }

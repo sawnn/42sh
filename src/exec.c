@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** path
+** 42sh
 ** File description:
-** path
+** exec
 */
 
 #include "../include/my_minishell.h"
@@ -20,7 +20,6 @@ void	core_exec(t_mini *mini, char ***cmd)
 	mini->tab = *cmd;
 	check_path(mini, mini->head, 0);
 	EXEC == -1 ? print_errno(mini) : 0;
-
 }
 
 int	my_exec_pipe(t_mini *mini, char ***cmd)

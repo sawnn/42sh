@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** basic
+** 42sh
 ** File description:
-** basic
+** Basic_1
 */
 
 #include "../include/my_minishell.h"
