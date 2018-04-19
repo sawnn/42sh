@@ -1,13 +1,13 @@
 ##
 ## EPITECH PROJECT, 2017
-## Makefile
+## 42sh
 ## File description:
-## minishell
+## Makefile
 ##
 
 SRC	=	src/*.c
 
-NAME	=	mysh
+NAME	=	42sh
 
 all:	makelib $(NAME)
 
