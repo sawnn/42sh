@@ -2,31 +2,26 @@
 ## EPITECH PROJECT, 2017
 ## Makefile
 ## File description:
-## gaspacho andalou
+## minishell
 ##
 
-SRC	=	src/main.c
+SRC	=	src/*.c
 
-OBJ	=	$(SRC:.c=.o)
+NAME	=	mysh
 
-NAME	=	42sh
+all:	makelib $(NAME)
 
-all:	$(NAME)
+makelib :
+		(cd ./lib && make re)
 
-CFLAGS	= -I include -g3
-
-$(NAME):	$(OBJ)
-	gcc -o $(NAME) $(OBJ) -g3
+$(NAME) :
+	gcc -g3 -o $(NAME) $(SRC) -L ./lib -lmy -L ./lib -lgnl
 
 clean:
-	rm -f $(OBJ)
-	rm -f include/*~
-	rm -f src/*~
-	rm -f include/*.o
-	rm -f ./*~
+	rm -rf *~
 
 fclean:	clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
+	(cd ./lib && make fclean)
 
 re:	fclean all
-
