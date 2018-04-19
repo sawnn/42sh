@@ -5,7 +5,7 @@
 ## ok
 ##
 
-NAME	= mysh
+NAME	= 42sh
 
 CC	= gcc -g3
 
