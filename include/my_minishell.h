@@ -116,7 +116,7 @@ int	is_bin(t_mini *);
 void	call_argument(t_mini *, node **);
 int	buff_null(t_mini *);
 void	is_error_exit(t_mini *);
-void	my_prompt(t_mini *);
+void	my_prompt(t_mini *, node **);
 
 /*PATH_FOR_REMOVE.C*/
 int	check_remove_path_bis(t_mini *, char *);
@@ -167,4 +167,8 @@ char	***return_cmd(char **, char ***, int);
 int	my_exec_pipe(t_mini *, char ***);
 int	my_exec(t_mini *);
 void	check_error(pid_t, int *, t_mini *);
+
+/*UTILITY.C*/
+char	*my_strncat(char *, char *, int);
+int	glob(int);
 #endif /*MY_MINISHELL_H_*/

@@ -24,19 +24,24 @@ void	sig(int signo)
 {
 	if (signo == SIGINT)
 		if (isatty(0) == 1)
-			my_printf("\n\033[1m\033[32m→ 21sh: \033[0m");
+			glob(1);
+			//my_printf("\n\033[1m\033[32m→ 21sh: \033[0");
 }
 
 void	check_signals(void)
 {
 	signal(SIGINT, sig);
+	if (glob(-2) == 1)
+		//my_printf("A");
+	glob(0);
 }
 
 int	minishell(t_mini *mini, node **head)
 {
-	check_signals();
+	my_env(mini, head);
 	while (1337) {
-		my_prompt(mini);
+		//check_signals();
+		my_prompt(mini, head);
 		if (mini->buf == NULL)
 			return (buff_null(mini));
 		mini->buf = my_epure_str(mini->buf);
@@ -70,6 +75,7 @@ int	main(NOU int ac, NOU char **av, char **env)
 	mini.j = 0;
 	mini.tab = NULL;
 	mini.savehome = NULL;
+	mini.head = NULL;
 	mini.env = env;
 	mini.no_path = 0;
 	mini.cd = 0;
