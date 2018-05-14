@@ -6,7 +6,6 @@
 */
 
 #include "../include/my_minishell.h"
-#define	CMP my_strcmp(str, mini->tab[i + 1])
 
 void	put_msg(int i, char *str)
 {
