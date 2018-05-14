@@ -45,8 +45,7 @@ int	minishell(t_mini *mini, node **head)
 		mini->exit = my_str_to_word_array(mini->buf);
 		if (mini->exit[0] != NULL &&
 			my_strcmp(mini->exit[0], "exit") == 0) {
-			if (my_exit(mini) == 86)
-				is_error_exit(mini);
+			if (my_exit(mini) == 86) is_error_exit(mini);
 			else {
 				isatty(0) == 1 ? write(1, "exit\n", 5): 0;
 				return (my_exit(mini));

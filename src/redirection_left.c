@@ -19,11 +19,13 @@ int	simple_redir_left(t_mini *mini, int i)
 	int	fd = open(pathname, 0666);
 
 	if (fd == -1) {
-		my_printf("%s: No such file or directory2.\n", mini->tab[i + 1]);
+		my_printf("%s: No such file or directory2.\n",
+			mini->tab[i + 1]);
 		return (mini->global = 1);
 	}
 	if (dup2(fd, 0) == -1) {
-		my_printf("%s: No such file or directory3.\n", mini->tab[i + 1]);
+		my_printf("%s: No such file or directory3.\n",
+			mini->tab[i + 1]);
 		return (mini->global = 1);
 	}
 	close(fd);
