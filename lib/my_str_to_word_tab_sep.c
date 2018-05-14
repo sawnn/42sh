@@ -47,7 +47,7 @@ char	**my_str_to_word_tab_sep(char *s, char c)
 	int	x = 0;
 	int	y = 0;
 	int	word = compt_word(s, c);
-	char	**tab = malloc(sizeof(char*) * word + sizeof(char*));
+	char	**tab = malloc(sizeof(char *) * word + sizeof(char *));
 	if (!tab)
 		return (NULL);
 	while (y != word) {

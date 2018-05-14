@@ -25,22 +25,19 @@ void	sig(int signo)
 	if (signo == SIGINT)
 		if (isatty(0) == 1)
 			glob(1);
-			//my_printf("\n\033[1m\033[32m→ 21sh: \033[0");
 }
 
 void	check_signals(void)
 {
 	signal(SIGINT, sig);
 	if (glob(-2) == 1)
-		//my_printf("A");
-	glob(0);
+		glob(0);
 }
 
 int	minishell(t_mini *mini, node **head)
 {
 	my_env(mini, head);
 	while (1337) {
-		//check_signals();
 		my_prompt(mini, head);
 		if (mini->buf == NULL)
 			return (buff_null(mini));

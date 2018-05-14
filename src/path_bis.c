@@ -55,9 +55,7 @@ void	is_error_exit(t_mini *mini)
 char	*get_prompt(node *list)
 {
 	char *prompt = malloc(sizeof(char) * 100);
-	int i = -1;
-	int j = 5;
-	int k = 0;
+	int i = -1; int j = 5; int k = 0;
 	char getpwd[100];
 
 	while (my_strncmp("USER", list->str, 4) != 0)
@@ -68,7 +66,7 @@ char	*get_prompt(node *list)
 	my_strncat(prompt, "@localhost ", 11);
 	k = k + 10;
 	getcwd(getpwd, 100);
-	while(getpwd[++i] != '\0');
+	while (getpwd[++i] != '\0');
 	while (getpwd[--i] != '/');
 	while (getpwd[++i] != '\0')
 		prompt[k++] = getpwd[i];
