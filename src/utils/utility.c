@@ -5,7 +5,12 @@
 ** a
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
+
+void	put_msg(int i, char *str)
+{
+	write(i, str, my_strlen(str));
+}
 
 char    *my_strncat(char *dest, char *src, int nb)
 {

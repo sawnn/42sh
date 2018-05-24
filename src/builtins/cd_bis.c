@@ -5,7 +5,7 @@
 ** cd
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
 
 int	my_cd_path_opendir(t_mini *mini)
 {

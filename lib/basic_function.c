@@ -5,7 +5,7 @@
 ** Basic_1
 */
 
-#include "../include/my_minishell.h"
+#include "../include/my_sh.h"
 
 int	my_strcmp(char *s1, char *s2)
 {

@@ -5,7 +5,7 @@
 ** Basic_2
 */
 
-#include "../include/my_minishell.h"
+#include "../include/my_sh.h"
 
 void	my_putstr(char *str)
 {

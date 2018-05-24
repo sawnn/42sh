@@ -5,7 +5,7 @@
 ** PWD and ENV
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
 
 int	check_built(t_mini *mini, node **head)
 {

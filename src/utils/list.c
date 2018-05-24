@@ -5,7 +5,7 @@
 ** list
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
 
 node	*add_link(node *head, char *str)
 {

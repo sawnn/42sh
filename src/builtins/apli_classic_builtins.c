@@ -5,7 +5,7 @@
 ** Setenv_Unsetenv_funcs
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
 
 void	my_env(t_mini *mini, node **head)
 {

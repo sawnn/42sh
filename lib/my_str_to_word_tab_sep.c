@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../include/my_sh.h"
+
 int	alp(char *str, char c, int i)
 {
 	int	j = i;

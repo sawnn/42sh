@@ -5,7 +5,7 @@
 ** Basic_3
 */
 
-#include "../include/my_minishell.h"
+#include "../include/my_sh.h"
 
 int	length_tab(char **tab)
 {

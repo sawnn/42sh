@@ -5,7 +5,7 @@
 ** epur_str
 */
 
-#include "../include/my_minishell.h"
+#include "../include/my_sh.h"
 
 char	*my_epure_str(char *str)
 {

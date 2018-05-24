@@ -5,7 +5,7 @@
 ** pointeur_function
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
 
 int	my_call_env(t_mini *mini, node **head)
 {

@@ -5,7 +5,8 @@
 ** handle_error
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
+
 
 void	check_error(pid_t pid, int *ret, t_mini *mini)
 {

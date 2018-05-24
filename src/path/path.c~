@@ -5,19 +5,19 @@
 ** path
 */
 
-#include "../include/my_minishell.h"
+#include "../../include/my_sh.h"
 
-void	color(t_mini *mini)
+int	check_remove_path_bis(t_mini *mini, char *path3)
 {
-	int	i = 0;
-
-	if (my_strcmp(mini->tab[0], "ls") == 0 && isatty(0) == 1) {
-		while (mini->tab[i] != NULL) {
-			i = i + 1;
-		}
-		mini->tab[i] = "--color";
-		mini->tab[i + 1] = NULL;
+	if (access(path3, F_OK) == 0) {
+		mini->rpath = path3;
+		return (0);
 	}
+	if (access(mini->tab[0], F_OK) == 0) {
+		mini->rpath = mini->tab[0];
+		return (0);
+	}
+	return (-1);
 }
 
 int	check_remove_path(t_mini *mini)

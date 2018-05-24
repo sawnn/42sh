@@ -5,7 +5,7 @@
 ** no_param
 */
 
-#include "../include/my_minishell.h"
+#include "../include/my_sh.h"
 
 int	num_word(char *str)
 {

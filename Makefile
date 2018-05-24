@@ -5,7 +5,11 @@
 ## Makefile
 ##
 
-SRC	=	src/*.c
+SRC	=	src/builtins/*.c	\
+		src/parsing/*.c		\
+		src/path/*.c		\
+		src/utils/*.c		\
+		src/main.c
 
 NAME	=	42sh
 
