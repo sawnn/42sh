@@ -23,8 +23,7 @@ int	call_builtins(int i, t_mini *mini, node **head)
 	if (i == 4 && ret == 86) {
 		is_error_exit(mini);
 	}
-	else {
-		isatty(0) == 1 ? write(1, "exit\n", 5) : 0;
+	else if (i == 4) {
 		return (my_exit(mini, head));
 	}
 	return (ret);

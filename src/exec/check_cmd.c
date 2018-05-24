@@ -9,6 +9,15 @@
 
 int	check_cmd(t_mini *mini, node **head)
 {
-	is_builtins(mini, head);
-	return (0);
+	if (is_builtins(mini, head) != -1);
+	else if (check_path(mini, head, 0) == 0) {
+		mini->head = head;
+		mini->global = which_exec(mini);
+	}
+	else {
+		write(2, mini->tab[0], strlen(mini->tab[0]));
+		write(2, ": Command not found.\n", 21);
+		mini->global = 1;
+	}
+	return (mini->global);
 }

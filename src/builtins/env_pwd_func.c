@@ -9,15 +9,20 @@
 
 int	my_exit(t_mini *mini, NOU node **head)
 {
-	if (mini->exit[1] == NULL)
-		exit(mini->global);
-	else if (my_getnbr(mini->exit[1]) == 86 ||
-		length_tab(mini->exit) > 2) {
+	if (mini->tab[1] == NULL) {
+		mini->exitt = mini->global;
+		mini->bool = 1;
+	}
+	else if (my_getnbr(mini->tab[1]) == 86 ||
+		length_tab(mini->tab) > 2) {
 		write(2, "exit: Expression Syntax.\n", 25);
 		return (86);
 	}
-	else
-		exit(my_getnbr(mini->exit[1]));
+	else {
+		mini->exitt = my_getnbr(mini->tab[1]);
+		mini->bool = 1;
+	}
+	return (0);
 }
 
 int	save_env(t_mini *mini, node **head)

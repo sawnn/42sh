@@ -48,7 +48,7 @@ int	is_path(t_mini *mini, node *tmp, int i)
 	if (is_bin(mini) == 0)
 		return (0);
 	while (mini->path[i] != NULL) {
-		mini->patht = my_strcat(mini->path[i], "/");
+	mini->patht = my_strcat(mini->path[i], "/");
 		mini->patht = my_strcat(mini->patht, mini->tab[0]);
 		if (access(mini->patht, F_OK) == 0) {
 			mini->rpath = mini->patht;
@@ -84,15 +84,15 @@ int	check_path(t_mini *mini, node **head, int no_path)
 		return (-1);
 	return (is_path(mini, tmp, i));
 }
-/*
+
 int	which_exec(t_mini *mini)
 {
-	if (!mini->cmd)
-		return (mini->global);
-	else if (mini->cmd[1] == NULL)
-		my_exec(mini);
-	else
-		my_exec_pipe(mini, mini->cmd);
+	//if (!mini->cmd)
+	//	return (mini->global);
+	//else if (mini->cmd[1] == NULL)
+	my_exec(mini);
+	//else
+	//	my_exec_pipe(mini, mini->cmd);
 	return (mini->global);
 }
-*/
+

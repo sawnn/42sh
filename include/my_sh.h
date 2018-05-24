@@ -47,6 +47,8 @@ typedef	struct	s_mini {
 	int	cd;
 	int	b_exit;
 	int	no_path;
+	int	exitt;
+	int	bool;
 } t_mini;
 #include "tree.h"
 #define	EXEC	execve(mini->rpath, *cmd, mini->env)
@@ -186,5 +188,5 @@ int	glob(int);
 //		*EXEC*			//
 /*CHECK_CMD.C*/
 int	check_cmd(t_mini *, node **);
-
+int	my_exec(t_mini *);
 #endif /*MY_MINISHELL_H_*/

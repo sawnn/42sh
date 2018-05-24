@@ -308,4 +308,8 @@ void	tree(char **str, t_mini *mini)
 		list = list->parent;
 		}*/
 	viewlist(list, cmd, mini);
+	if (mini->bool == 1) {
+		isatty(0) == 1 ? write(1, "exit\n", 5) : 0;
+		exit(mini->exitt);
+	}
 }
