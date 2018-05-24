@@ -9,7 +9,7 @@ SRC	=	src/builtins/*.c	\
 		src/parsing/*.c		\
 		src/path/*.c		\
 		src/utils/*.c		\
-		doughan/tree/*.c	\
+		src/exec/*.c		\
 		src/main.c
 
 NAME	=	42sh

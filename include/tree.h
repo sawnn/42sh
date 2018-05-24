@@ -33,6 +33,6 @@ typedef struct s_cmd {
 	char **left;
 } t_cmd;
 
-void	tree(char **);
+void	tree(char **, t_mini *);
 
 #endif

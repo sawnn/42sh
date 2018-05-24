@@ -7,19 +7,6 @@
 
 #include "../include/my_sh.h"
 
-int	my_exit(t_mini *mini)
-{
-	if (mini->exit[1] == NULL)
-		return (mini->global);
-	else if (my_getnbr(mini->exit[1]) == 86 ||
-		length_tab(mini->exit) > 2) {
-		write(2, "exit: Expression Syntax.\n", 25);
-		return (86);
-	}
-	else
-		return (my_getnbr(mini->exit[1]));
-}
-
 void	sig(int signo)
 {
 	if (signo == SIGINT)
@@ -41,9 +28,11 @@ int	minishell(t_mini *mini, node **head)
 		my_prompt(mini, head);
 		if (mini->buf == NULL)
 			return (buff_null(mini));
-		mini->buf = my_epure_str(mini->buf);
-		mini->exit = my_str_to_word_array(mini->buf);
-		// rendre propre la ligne de commande #theo
+		if (launch_checker_parsor(mini, mini->buf) == -1)
+			break;
+		printf("Fini parsing = %s\n", mini->buf);
+		mini->tab = my_str_to_word_array(mini->buf);
+		// rendre propre la ligne de commande #theo ok
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
 		// checker les guillemet #zack
@@ -57,7 +46,8 @@ int	minishell(t_mini *mini, node **head)
 //	}
 //		if (pre_call(mini, head) == 84)
 //			return (mini->global = 84);
-		tree(mini->exit);
+		mini->head = head;
+		tree(mini->tab, mini);
 	}
 	return (mini->global);
 }

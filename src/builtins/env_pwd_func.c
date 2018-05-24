@@ -7,21 +7,17 @@
 
 #include "../../include/my_sh.h"
 
-int	check_built(t_mini *mini, node **head)
+int	my_exit(t_mini *mini, NOU node **head)
 {
-	save_env(mini, head);
-	if (my_strcmp(mini->tab[0], "env") == 0)
-		return (my_call_env(mini, head));
-	else if (my_strcmp(mini->tab[0], "setenv") == 0)
-		return (my_call_setenv(mini, head));
-	else {
-		if (my_strcmp(mini->tab[0], "unsetenv") == 0)
-			return (my_call_unsetenv(mini, head));
-		else if (my_strcmp(mini->tab[0], "cd") == 0)
-			return (my_call_cd(mini, head));
+	if (mini->exit[1] == NULL)
+		exit(mini->global);
+	else if (my_getnbr(mini->exit[1]) == 86 ||
+		length_tab(mini->exit) > 2) {
+		write(2, "exit: Expression Syntax.\n", 25);
+		return (86);
 	}
-	mini->global = -1;
-	return (mini->global);
+	else
+		exit(my_getnbr(mini->exit[1]));
 }
 
 int	save_env(t_mini *mini, node **head)

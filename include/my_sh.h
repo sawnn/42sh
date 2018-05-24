@@ -18,7 +18,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "my_printf.h"
-#include "tree.h"
 #define FLAGS_OPEN_BIS S_IRGRP | S_IWGRP | S_IWUSR
 #define FLAGS_OPEN O_WRONLY | O_CREAT, S_IRUSR
 #define CMP my_strcmp(str, mini->tab[i + 1])
@@ -49,7 +48,7 @@ typedef	struct	s_mini {
 	int	b_exit;
 	int	no_path;
 } t_mini;
-
+#include "tree.h"
 #define	EXEC	execve(mini->rpath, *cmd, mini->env)
 
 //				LIB				//
@@ -115,6 +114,7 @@ int	check_built(t_mini *, node **);
 int	save_env(t_mini *, node **);
 int	replace_pwd(char *, node **);
 int	replace_oldpwd(char *, node **);
+int	my_exit(t_mini *, node **);
 
 /*CD.C*/
 int	my_cd_minus(t_mini *, node **);
@@ -127,6 +127,10 @@ int	new_cd(t_mini *, node **);
 int	my_cd_path_opendir(t_mini *);
 int	my_cd_path_fail_chdir(t_mini *, char *);
 int	only_alph(char *);
+
+/*CALL_BUILT.C*/
+int	call_builtins(int, t_mini *, node **);
+int	is_builtins(t_mini *, node **);
 
 //		*PATH*			//
 
@@ -146,6 +150,7 @@ int	clear_ampersand(char **);
 /*PARSING.C*/
 int	clear_string(char **);
 int	parsor_checker(int, char **);
+int	launch_checker_parsor(t_mini *, char *);
 
 /*UTILS_PARSING.C*/
 int	is_alph(char);
@@ -177,5 +182,9 @@ void	my_prompt(t_mini *, node **);
 void	put_msg(int, char *);
 char	*my_strncat(char *, char *, int);
 int	glob(int);
+
+//		*EXEC*			//
+/*CHECK_CMD.C*/
+int	check_cmd(t_mini *, node **);
 
 #endif /*MY_MINISHELL_H_*/
