@@ -57,7 +57,7 @@ int	minishell(t_mini *mini, node **head)
 //	}
 //		if (pre_call(mini, head) == 84)
 //			return (mini->global = 84);
-		
+		tree(mini->exit);
 	}
 	return (mini->global);
 }

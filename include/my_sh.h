@@ -18,7 +18,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "my_printf.h"
-
+#include "tree.h"
 #define FLAGS_OPEN_BIS S_IRGRP | S_IWGRP | S_IWUSR
 #define FLAGS_OPEN O_WRONLY | O_CREAT, S_IRUSR
 #define CMP my_strcmp(str, mini->tab[i + 1])
