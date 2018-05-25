@@ -16,6 +16,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <unistd.h>
+#include <glob.h>
 #include <fcntl.h>
 #include "shell.h"
 #include "my_printf.h"
@@ -151,6 +152,9 @@ int	which_exec(t_mini *);
 
 //		*PARSING*		//
 
+/*GlOBBING.C*/
+char	**my_glob(char **);
+
 /*QUOTES.C*/
 int	parse_quote(char *);
 
@@ -197,7 +201,7 @@ void	my_prompt(t_mini *, node **);
 /*UTILITY.C*/
 void	put_msg(int, char *);
 char	*my_strncat(char *, char *, int);
-int	glob(int);
+int	globa(int);
 
 //		*EXEC*			//
 /*CHECK_CMD.C*/

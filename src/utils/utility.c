@@ -26,7 +26,7 @@ char    *my_strncat(char *dest, char *src, int nb)
 	return (dest);
 }
 
-int     glob(int i)
+int     globa(int i)
 {
 	static int glob = 0;
 

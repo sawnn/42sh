@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** globbings
+** globing.c
 ** File description:
-** gaspacho andalou
+** a
 */
 
-#include "my.h"
+#include "../../include/my_sh.h"
 
 int	is_glob(char *str)
 {
@@ -56,7 +56,7 @@ char	**my_glob(char **tab)
 		if (is_glob(tab[i]) == 1)
 			break;
 	if (!tab[i])
-		return (84);
+		return (tab);
 	if (glob(tab[i], GLOB_DOOFFS, NULL, &globbuf) == GLOB_NOMATCH) {
 		printf("%s: No match\n", tab[0]);
 		return (NULL);

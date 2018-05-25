@@ -9,6 +9,8 @@
 
 int	check_cmd(t_mini *mini, node **head)
 {
+	if (my_glob(mini->tab) == NULL)
+		return (1);
 	if (is_builtins(mini, head) != -1);
 	else if (check_path(mini, head, 0) == 0) {
 		mini->head = head;
