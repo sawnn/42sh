@@ -7,13 +7,13 @@
 
 #include "../../include/my_sh.h"
 
-int	clear_semicolon(char **str)
+char	*clear_semicolon(char *str)
 {
 	char	*new = NULL; int	i = 0;
-	int	j = 0; int	count = 0;	char	*tmp = (*str);
+	int	j = 0; int	count = 0;	char	*tmp = strdup((str));
 
 	if ((new = malloc(sizeof(char) * my_strlen((tmp) + 1))) == NULL)
-		return (-1);
+		return (NULL);
 	while (tmp[i] == ';')
 		i += 1;
 	while (tmp[i] != '\0') {
@@ -27,8 +27,8 @@ int	clear_semicolon(char **str)
 			i += 1;
 		count = 0;
 	}
-	new[j] = '\0', *str = new;
-	return (0);
+	new[j] = '\0', str = strdup(new);
+	return (str);
 }
 /*
 int	clear_ampersand(char **str)

@@ -24,6 +24,8 @@ char	**move_para(char **tab)
 	int cmp = 0;
 	int tmp = 0;
 
+	if (tab[0] == NULL)
+		return (NULL);
 	while (tab[++i]);
 	while (cmp == 0) {
 		if (strcmp(tab[i - 1], ")") == 0 && strcmp(tab[j], "(") == 0) {
@@ -47,6 +49,8 @@ int	find_bigger(char **tab)
 	int j = -1;
 	char *ope[6] = {";", "&&", "||", ">", "<", NULL};
 
+	if (!tab)
+		return (-1);
 	while (ope[++i]) {
 		while (tab[++j]) {
 			if (strcmp(tab[j], "(") == 0)
@@ -168,18 +172,54 @@ void	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 		viewlist(list->right, cmd, mini);
 }
 
+char	**check_null(char **tab)
+{
+	if (tab == NULL) {
+		write(2, "Invalid null command.\n", 22);
+		return (NULL);
+	}
+	return (tab);
+}
+
+int	check_ope(char *op)
+{
+	int i = -1;
+	char *tab[6] = {";", "&&", "||", ">", "<", NULL};
+
+	if (!op)
+		return (0);
+	while (tab[++i])
+		if (strcmp(tab[i], op) == 0)
+			return (0);
+	return (1);
+		//}
+	//return (0);
+}
+
 int	put_tree(t_tree **list, t_cmd *cmd, int i)
 {
-	
-	//while (list->left)
-	//	put_tree(list->left, cmd, i);
+	char **tmp = malloc(sizeof(char *));
+	int j = 0;
+
 	if (i == -1) {
 		(*list)->cmd = cmd->left;
 		return (0);
 	}
 	(*list)->op = strdup(cmd->left[i]);
 	if (cmd->left[i + 1]) {
-		cmd->right[cmd->r] = &cmd->left[i + 1];
+		tmp[0] = strdup(cmd->left[i + 1]);
+		tmp[1] = NULL;
+		while (check_ope(cmd->left[i + 2])) {
+			cmd->left[i] = cmd->left[i + 2];
+			i++;
+		}
+		while (cmd->left[i + 2]) {
+			tmp = realloc(tmp, sizeof(char *) * (j + 4));
+			tmp[++j] = strdup(cmd->left[i + 2]);
+			tmp[j + 1] = NULL;
+			i++;
+		}
+		cmd->right[cmd->r] = tmp;
 		cmd->right[cmd->r] = move_para(cmd->right[cmd->r]);
 		cmd->r += 1;
 		cmd->right = realloc(cmd->right, sizeof(char **) * (cmd->r + 1));
@@ -187,9 +227,9 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 		if (strcmp(cmd->left[i], "||") && (strcmp(cmd->left[i], "&&")))
 			write(2, "Missing name for redirect\n", 26);
 		else
-			write(2, "Invalid null command.\n", 22);	
+			write(2, "Invalid null command.\n", 22);
 		return (1);
-	}
+	} 
 	cmd->left[i] = NULL;
 	(*list)->left = malloc(sizeof(t_tree));
 	(*list)->left->parent = *list;
@@ -200,8 +240,10 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 	(*list)->right = NULL;
 	(*list)->cmd = NULL;
 	cmd->left = move_para(cmd->left);
-	if ((i = find_bigger(cmd->left)) == -1)
-		(*list)->cmd = cmd->left;
+	if ((i = find_bigger(cmd->left)) == -1) {
+		if (((*list)->cmd = check_null(cmd->left)) == NULL)
+			return (1);
+	}
 	//int j = -1;
 	//while (cmd->left[++j])
 	//	printf("%s\n", cmd->left[j]);
@@ -277,7 +319,6 @@ void	tree(char **str, t_mini *mini)
 			if (list->parent)
 				list = list->parent;
 		} while (list->parent && list->right != NULL);
-		
 		if (list->right == NULL && cmd.right[0] != NULL) {
 			list->right = malloc(sizeof(t_tree));
 			list->right->parent = list;
@@ -289,6 +330,7 @@ void	tree(char **str, t_mini *mini)
 			list->right = NULL;
 			cmd.left = cmd.right[cmd.r - 1];
 			cmd.r -= 1;
+			//printf("a %s\n", cmd.left[1]);
 			i = find_bigger(cmd.left);
 		}
 		
@@ -307,6 +349,9 @@ void	tree(char **str, t_mini *mini)
 		}
 		list = list->parent;
 		}*/
+	while (list->parent)
+		list = list->parent;
+	//printf("%s\n", list->left->cmd[0]);
 	viewlist(list, cmd, mini);
 	if (mini->bool == 1) {
 		isatty(0) == 1 ? write(1, "exit\n", 5) : 0;

@@ -146,13 +146,13 @@ int	which_exec(t_mini *);
 //		*PARSING*		//
 
 /*CLEAR.C*/
-int	clear_semicolon(char **);
+char	*clear_semicolon(char *);
 int	clear_ampersand(char **);
 
 /*PARSING.C*/
-int	clear_string(char **);
-int	parsor_checker(int, char **);
-int	launch_checker_parsor(t_mini *, char *);
+char	*clear_string(char *);
+char	*parsor_checker(int, char *);
+char	*launch_checker_parsor(t_mini *, char *);
 
 /*UTILS_PARSING.C*/
 int	is_alph(char);

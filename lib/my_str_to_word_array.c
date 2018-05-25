@@ -46,7 +46,8 @@ char	**my_str_to_word_array(char *str)
 	int	x = 0;
 	int	y = 0;
 	int	word = num_word(str);
-	char	**tab = malloc(sizeof(char *) * word + (sizeof(char *) * 2));
+	char	**tab = malloc(sizeof(char *) * (word + 2));
+
 	if (!tab)
 		return (NULL);
 	while (y != word) {
