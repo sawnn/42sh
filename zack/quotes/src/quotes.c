@@ -23,28 +23,23 @@ int	check_str(char c, char *str)
 	return (-1);
 }
 
-char	**parse_quote(char *str)
+int	parse_quote(char *str)
 {
 	int	i = -1;
-	int	j = -1;
-	char	**tab = NULL;
 	char	c = 0;
 	int	help = -1;
-	int	k = 0;
 
-	if ((tab = malloc(sizeof(char *) * 10000)) == NULL)
-		return (NULL);
 	while (str[++i] != 0) {
 		if (i > help && (str[i] == '"' || str[i] == '\'')) {
 			c = str[i];
 			if ((help = check_str(c, &str[i])) == -1) {
 				printf("Unmatched '%c'.\n", c);
-				return (NULL);
+				return (84);
 			}
 			c = 0;
 		}
 	}
-	return (tab);
+	return (0);
 }
 
 int	main()

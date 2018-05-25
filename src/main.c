@@ -29,6 +29,10 @@ int	minishell(t_mini *mini, node **head)
 		if (mini->buf == NULL)
 			return (buff_null(mini));
 		mini->buf = is_inibhitor(mini->buf);
+		if (parse_quote(mini->buf) == 84) {
+			mini->buf[0] = '\0';
+			mini->global = 1;
+		}
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);

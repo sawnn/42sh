@@ -151,6 +151,9 @@ int	which_exec(t_mini *);
 
 //		*PARSING*		//
 
+/*QUOTES.C*/
+int	parse_quote(char *);
+
 /*INIBHITOR.C*/
 char	*is_inibhitor(char *);
 
