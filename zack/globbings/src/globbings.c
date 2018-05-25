@@ -35,6 +35,7 @@ void	exec_glob(char **tab, glob_t globbuf)
 {
 	int	j = -1;
 	int	k = 0;
+
 	while (tab[++j] != NULL) {
 		if (is_glob(tab[j]) == 0) {
 			globbuf.gl_pathv[k] = tab[j];
@@ -55,13 +56,16 @@ int	my_glob(char **tab)
 			break;
 	if (!tab[i])
 		return (84);
-	if (glob(tab[i], GLOB_DOOFFS, NULL, &globbuf) == GLOB_NOMATCH)
+	if (glob(tab[i], GLOB_DOOFFS, NULL, &globbuf) == GLOB_NOMATCH) {
 		printf("%s: No match\n", tab[0]);
+		return (84);
+	}
 	while (tab[++i] != NULL) {
 		if (is_glob(tab[i]) == 1 &&
 			glob(tab[i], GLOB_DOOFFS |
 				GLOB_APPEND, NULL, &globbuf) == GLOB_NOMATCH) {
 			printf("%s: No match\n", tab[0]);
+			return (84);
 		}
 	}
 	exec_glob(tab, globbuf);
