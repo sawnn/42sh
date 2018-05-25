@@ -5,7 +5,7 @@
 ** a
 */
 
-#include "../../../include/my_sh.sh"
+#include "../../include/my_sh.h"
 
 int	is_glob(char *str)
 {

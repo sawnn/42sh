@@ -11,14 +11,14 @@ void	sig(int signo)
 {
 	if (signo == SIGINT)
 		if (isatty(0) == 1)
-			glob(1);
+			globa(1);
 }
 
 void	check_signals(void)
 {
 	signal(SIGINT, sig);
-	if (glob(-2) == 1)
-		glob(0);
+	if (globa(-2) == 1)
+		globa(0);
 }
 
 int	minishell(t_mini *mini, node **head)

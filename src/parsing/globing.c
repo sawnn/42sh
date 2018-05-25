@@ -42,7 +42,7 @@ char	**exec_glob(char **tab, glob_t globbuf)
 			k += 1;
 		}
 	}
-	return (globbuf.gl_pathv[0]);
+	return (globbuf.gl_pathv);
 //	execvp(tab[0], &globbuf.gl_pathv[0]);
 }
 
@@ -69,5 +69,5 @@ char	**my_glob(char **tab)
 			return (NULL);
 		}
 	}
-	return (exec_glob(tab, globbuf););
+	return (exec_glob(tab, globbuf));
 }
