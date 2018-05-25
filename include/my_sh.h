@@ -151,6 +151,9 @@ int	which_exec(t_mini *);
 
 //		*PARSING*		//
 
+/*INIBHITOR.C*/
+char	*is_inibhitor(char *);
+
 /*CHECK.C*/
 char	*check_parentheses(char *);
 
