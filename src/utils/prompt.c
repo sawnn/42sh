@@ -13,11 +13,13 @@ char	*get_prompt(node *list)
 	int i = -1; int j = 5; int k = 0;
 	char getpwd[100];
 
-	while (my_strncmp("USER", list->str, 4) != 0)
-		list = list->next;
-	while (list->str[j] != '\0')
-		prompt[k++] = list->str[j++];
-	prompt[k++] = '\0';
+	if (list != NULL) {
+		while (my_strncmp("USER", list->str, 4) != 0)
+			list = list->next;
+		while (list->str[j] != '\0')
+			prompt[k++] = list->str[j++];
+		prompt[k++] = '\0';
+	}
 	my_strncat(prompt, "@localhost ", 11);
 	k = k + 10;
 	getcwd(getpwd, 100);
