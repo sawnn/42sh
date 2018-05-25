@@ -31,6 +31,7 @@ int	minishell(t_mini *mini, node **head)
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
+		//mini->tab = check_dollar(mini->tab, mini);
 		// rendre propre la ligne de commande #theo ok
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
@@ -48,6 +49,8 @@ int	main(NOU int ac, NOU char **av, char **env)
 	t_mini	mini;
 	node	*head = NULL;
 
+	if ((mini.shell = malloc(sizeof(t_shell))) == NULL)
+		return (84);
 	mini.exitt = 0;
 	mini.bool = 0;
 	mini.old = NULL;

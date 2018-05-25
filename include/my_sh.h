@@ -17,6 +17,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include "shell.h"
 #include "my_printf.h"
 #define FLAGS_OPEN_BIS S_IRGRP | S_IWGRP | S_IWUSR
 #define FLAGS_OPEN O_WRONLY | O_CREAT, S_IRUSR
@@ -49,6 +50,7 @@ typedef	struct	s_mini {
 	int	no_path;
 	int	exitt;
 	int	bool;
+	t_shell *shell;
 } t_mini;
 #include "tree.h"
 #define	EXEC	execve(mini->rpath, *cmd, mini->env)
@@ -96,6 +98,10 @@ char	*get_next_line(int);
 
 
 //		*BUILTINS*		//
+
+/*call_set.c*/
+char	**check_dollar(char **, t_mini *);
+int	call_set(t_mini *, node **);
 
 /*APLI_CLASSIC_BUILTINS.C*/
 void	my_env(t_mini *, node **);

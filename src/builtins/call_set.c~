@@ -1,0 +1,15 @@
+/*
+** EPITECH PROJECT, 2018
+** callset
+** File description:
+** a
+*/
+
+#include "../../include/my_sh.h"
+
+int	call_set(t_mini *mini, node **head)
+{
+	if ((head || !(head)) && mini->tab[1])
+		fct_set(&mini->tab[1], mini->shell);
+	return (0);
+}

@@ -20,6 +20,7 @@ typedef struct s_arbre {
         int val;
 	char *op;
 	char **cmd;
+	int bool;
 	struct s_arbre *parent;
 	struct s_arbre *left;
 	struct s_arbre *right;

@@ -139,20 +139,25 @@ int	check_r(char *op)
 	return (0);
 }
 
-void	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
+int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 {
 	if (!list)
-		return;
+		return (1);
 	//je check si ya une redir
 	//si il ya, je vai le dup qui correspon en donnan le right;
 	//puis je vais a gauch pr executer
 	//puis je remonte sans repassé a droite
 	if (list->op && list->op[0] != ';' && is_redir(list->op, list->right->cmd) != 0)
 		list->val = 1; 
-	if (list->left && list->val != 1)
-		viewlist(list->left, cmd, mini);
-	if (list->cmd) {
+	if (list->left && list->val != 1) {
+		if (viewlist(list->left, cmd, mini))
+			return (1);
+	}
+	if (list->cmd && list->bool == 0) {
+		list->bool = 1;
 		mini->tab = list->cmd;
+		if ((mini->tab = check_dollar(mini->tab, mini)) == NULL)
+			return (1);
 		list->val= check_cmd(mini, mini->head);
 		dup2(cmd.stdout, 1);
 		dup2(cmd.stdin, 0);
@@ -163,13 +168,21 @@ void	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 	//else
 	//	printf("%s\n", list->op);;
 	//printf("%s\n", list->op);
-	if (list->op && !(strcmp(list->op, "&&")) && list->left->val == 0)
+	if (list->op && !(strcmp(list->op, "&&")) && list->left->val == 0) {
 		//if (list->right)
-		viewlist(list->right, cmd, mini);
-	else if (list->op && !(strcmp(list->op, "||")) && list->left->val != 0)
-		viewlist(list->right, cmd, mini);
+		if (viewlist(list->right, cmd, mini))
+			return (1);
+		
+		
+	}
+	else if (list->op && !(strcmp(list->op, "||")) && list->left->val != 0) {
+		if (viewlist(list->right, cmd, mini))
+			return (1);
+	}
 	else if (list->op && check_r(list->op))
-		viewlist(list->right, cmd, mini);
+		if (viewlist(list->right, cmd, mini))
+			return (1);
+	return (0);
 }
 
 char	**check_null(char **tab)
@@ -235,6 +248,7 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 	(*list)->left->parent = *list;
 	*list = (*list)->left;
 	(*list)->val = 0;
+	(*list)->bool = 0;
 	(*list)->op = NULL;
 	(*list)->left = NULL;
 	(*list)->right = NULL;
@@ -307,6 +321,7 @@ void	tree(char **str, t_mini *mini)
 	list->cmd = NULL;
 	list->op = NULL;
 	list->val = 0;
+	list->bool = 0;
 	list->left = NULL;
 	list->right = NULL;
 	list->parent = NULL;
@@ -326,6 +341,7 @@ void	tree(char **str, t_mini *mini)
 			list->val = 0;
 			list->cmd = NULL;
 			list->op = NULL;
+			list->bool = 0;
 			list->left = NULL;
 			list->right = NULL;
 			cmd.left = cmd.right[cmd.r - 1];

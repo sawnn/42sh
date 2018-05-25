@@ -9,7 +9,7 @@
 
 int	call_builtins(int i, t_mini *mini, node **head)
 {
-	int	(*fptr[6])(t_mini *, node **);
+	int	(*fptr[7])(t_mini *, node **);
 	int	ret = 0;
 
 	fptr[0] = my_call_env;
@@ -17,7 +17,8 @@ int	call_builtins(int i, t_mini *mini, node **head)
 	fptr[2] = my_call_unsetenv;
 	fptr[3] = my_call_cd;
 	fptr[4] = my_exit;
-	fptr[5] = NULL;
+	fptr[5] = call_set;
+	fptr[6] = NULL;
 	ret = (*fptr[i])(mini, head);
 	if (i == 4 && ret == 86) {
 		is_error_exit(mini);
@@ -30,7 +31,7 @@ int	call_builtins(int i, t_mini *mini, node **head)
 
 int	is_builtins(t_mini *mini, node **head)
 {
-	char	*built[6] = {"env", "setenv", "unsetenv", "cd", "exit", NULL};
+	char	*built[7] = {"env", "setenv", "unsetenv", "cd", "exit", "set", NULL};
 	int	i = 0;
 
 	while (built[i] != NULL) {
