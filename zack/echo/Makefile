@@ -6,8 +6,7 @@
 ##
 
 SRC	=	./src/my_echo.c			\
-		./src/special.c			\
-		./src/parse_error.c
+		./src/special.c
 
 OBJ	=	$(SRC:.c=.o)
 
