@@ -18,7 +18,7 @@ int	replace_special(char *);
 char	get_special(char);
 int	is_special(char **);
 
-int	find_slash(char *);
+int	find_char(char *, char);
 
 int	parse_error(char **);
 int	is_quote(char *);

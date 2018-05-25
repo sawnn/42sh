@@ -28,7 +28,7 @@ int	len_tab(char **tab)
 	int	i = -1;
 
 	while (tab[++i] != NULL);
-	return (i);
+	return (i - 1);
 }
 
 int	check_history(char *str)
@@ -37,18 +37,36 @@ int	check_history(char *str)
 	char	*buf = NULL;
 	char	**tab = NULL;
 	int	i = 0;
+	int	ret = 0;
 	int	fd = open(".21sh_history", O_CREAT | O_RDONLY, 0666);
 
 	stat(".21sh_history", &st);
-	if ((buf = malloc(sizeof(char) * st.st_size)) == NULL)
+	if ((buf = malloc(sizeof(char) * st.st_size + 1)) == NULL)
 		return (84);
-	read(fd, buf, st.st_size);
+	ret = read(fd, buf, st.st_size);
+	buf[ret] = 0;
 	tab = my_str_to_wordtab(buf, '\n');
+	i = -1;
+	printf("i before %d\n", i);
+	while (tab[++i]) {
+		printf("tab[%d] = %s\n", i, tab[i]);
+	}
 	i = len_tab(tab);
+	if (str[0] == '!') {
+		i = i -2;
+		while (tab[i][0] == '!')
+			i -= 1;
+		printf("%s\n", tab[i]);
+		tab[i] ? write(fd, tab[i], my_strlen(tab[i])) : 0;
+		tab[i] ? write(fd, "\n", 1) : 0;
+		return (1);
+	}
 	while (tab[--i]) {
 		if (my_cmp(str, tab[i]) == 0) {
 			close(fd);
-			printf("%s\n", tab[i]);
+			tab[i] ? write(fd, tab[i], my_strlen(tab[i])) : 0;
+			tab[i] ? write(fd, "\n", 1) : 0;
+			printf("there %s\n", tab[i]);
 			free(tab);
 			free(buf);
 			return (1);

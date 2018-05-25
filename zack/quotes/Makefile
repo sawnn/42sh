@@ -5,13 +5,12 @@
 ## gaspacho andalou
 ##
 
-SRC	=	./src/globbings.c		\
-		./src/my_str_to_wordtab.c	\
+SRC	=	./src/quotes.c		\
 		./src/gnl.c
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	my_glob
+NAME	=	quotes
 
 CFLAGS	=	-W -Wall -Wextra -I./include -g3
 

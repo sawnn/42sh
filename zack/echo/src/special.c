@@ -12,7 +12,7 @@ int	is_special(char **av)
 	int	i = -1;
 
 	while (av[++i])
-		if (find_slash(av[i]) == 1)
+		if (find_char(av[i], '\\') == 1)
 			return (1);
 	return (0);
 }
@@ -61,7 +61,7 @@ int	special_char(char **av)
 	int	i = 0;
 
 	while (av[++i]) {
-		if (find_slash(av[i]) == 1)
+		if (find_char(av[i], '\\') == 1)
 			replace_special(av[i]);
 		else
 			write(1, av[i], strlen(av[i]));
