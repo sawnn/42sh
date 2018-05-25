@@ -10,6 +10,7 @@ SRC	=	src/builtins/*.c	\
 		src/path/*.c		\
 		src/utils/*.c		\
 		src/exec/*.c		\
+		src/bonus/*.c		\
 		src/main.c
 
 NAME	=	42sh
