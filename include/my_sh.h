@@ -145,9 +145,11 @@ int	which_exec(t_mini *);
 
 //		*PARSING*		//
 
+/*CHECK.C*/
+char	*check_parentheses(char *);
+
 /*CLEAR.C*/
 char	*clear_semicolon(char *);
-int	clear_ampersand(char **);
 
 /*PARSING.C*/
 char	*clear_string(char *);

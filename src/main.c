@@ -29,7 +29,7 @@ int	minishell(t_mini *mini, node **head)
 		if (mini->buf == NULL)
 			return (buff_null(mini));
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
-			break;
+			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
 		// rendre propre la ligne de commande #theo ok
 		// cheeck si ya le nom d'un alias ou dune variable

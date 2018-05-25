@@ -30,32 +30,3 @@ char	*clear_semicolon(char *str)
 	new[j] = '\0', str = strdup(new);
 	return (str);
 }
-/*
-int	clear_ampersand(char **str)
-{
-	char	*tmp = (*str);
-	int	i = 0;
-	int	j = 0;
-	char	*dest = malloc(sizeof(char) * my_strlen(tmp) + 1);
-
-	while (tmp[i] != '\0') {
-		dest[j] = tmp[i];
-		printf("dest[%d] = %c - tmp[%d] = %c\n", j, dest[j], i, tmp[i]);
-		if (tmp[i] == '&') {
-			dest = realloc(dest, j + 4);
-			dest[j] = ' ';
-			dest[j + 1] = '&';
-			dest[j + 2] = ' ';
-			printf("\n\ndest[%d] = %c - dest[%d = %c\n\n", j, dest[j], j + 1, dest[j + 1]);
-
-			j += 2;
-		}
-		printf("\n\ndest[%d] = %c - tmp[%d] = %c\n", j, dest[j], i, tmp[i]);
-		i += 1;
-		j += 1;
-	}
-	dest[j] = '\0';
-	printf("dest = %s\n", dest);
-	return (0);
-}
-*/

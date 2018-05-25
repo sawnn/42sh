@@ -19,7 +19,6 @@ int	call_builtins(int i, t_mini *mini, node **head)
 	fptr[4] = my_exit;
 	fptr[5] = NULL;
 	ret = (*fptr[i])(mini, head);
-
 	if (i == 4 && ret == 86) {
 		is_error_exit(mini);
 	}

@@ -23,7 +23,7 @@ char	*parsor_checker(int i, char *str)
 
 	fptr[0] = clear_string;
 	fptr[1] = clear_semicolon;
-	//fptr[2] = clear_ampersand;
+	fptr[2] = check_parentheses;
 	fptr[3] = NULL;
 	return ((*fptr[i])(str));
 }
@@ -32,9 +32,8 @@ char	*launch_checker_parsor(t_mini *mini, char *str)
 {
 	int	i = 0;
 
-	while (i != 2) {
+	while (i != 3) {
 		if (parsor_checker(i, str) == NULL) {
-			printf("Error heicha my friend\n");
 			mini->global = 1;
 			return (NULL);
 		}
