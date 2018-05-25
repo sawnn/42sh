@@ -50,7 +50,7 @@ char	**parse_quote(char *str)
 int	main()
 {
 	char	*s = NULL;
-	
+	char	**tab = my_str_to_wordtab("ls -la \"echo lol\" ", ' ');
 	while ("gaspacho andalou") {
 		s = gnl(0);
 		if (parse_quote(s) == NULL) {
