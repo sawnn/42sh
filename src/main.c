@@ -36,6 +36,7 @@ int	minishell(t_mini *mini, node **head)
 		//checker si ya des backsticks # valentin
 		// checker les guillemet #zack
 		mini->head = head;
+		save_env(mini, head);
 		if (mini->tab[0])
 			tree(mini->tab, mini);
 	}
