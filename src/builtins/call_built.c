@@ -35,7 +35,6 @@ int	is_builtins(t_mini *mini, node **head)
 	char	*built[8] = {"env", "setenv", "unsetenv", "cd", "exit", "set", "echo", NULL};
 	int	i = 0;
 
-	printf("%s\n", mini->tab[0]);
 	while (built[i] != NULL) {
 		if (my_strcmp(mini->tab[0], built[i]) == 0)
 			return (call_builtins(i, mini, head));
