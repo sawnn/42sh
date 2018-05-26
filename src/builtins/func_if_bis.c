@@ -9,7 +9,7 @@
 
 int	superior_equal_if(char **tab)
 {
-	if (is_num(tab[0]) != 1 || is_num(tab[2]) != 1)
+	if (is_num_for_if(tab[0]) != 1 || is_num_for_if(tab[2]) != 1)
 		return (-1);
 	if (atoi(tab[0]) >= atoi(tab[2]))
 		return (1);
@@ -18,7 +18,7 @@ int	superior_equal_if(char **tab)
 
 int	modulo_if(char **tab)
 {
-	if (is_num(tab[0]) != 1 || is_num(tab[2]) != 1)
+	if (is_num_for_if(tab[0]) != 1 || is_num_for_if(tab[2]) != 1)
 		return (-1);
 	if (atoi(tab[0]) % atoi(tab[2]) != 0)
 		return (1);

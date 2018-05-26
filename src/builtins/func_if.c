@@ -23,7 +23,7 @@ int	diff_if(char **tab)
 
 int	infer_if(char **tab)
 {
-	if (is_num(tab[0]) != 1 || is_num(tab[2]) != 1)
+	if (is_num_for_if(tab[0]) != 1 || is_num_for_if(tab[2]) != 1)
 		return (-1);
 	if (strcmp(tab[0], tab[2]) == -1)
 		return (1);
@@ -32,7 +32,7 @@ int	infer_if(char **tab)
 
 int	infer_equal_if(char **tab)
 {
-	if (is_num(tab[0]) != 1 || is_num(tab[2]) != 1)
+	if (is_num_for_if(tab[0]) != 1 || is_num_for_if(tab[2]) != 1)
 		return (-1);
 	if (atoi(tab[0]) <= atoi(tab[2]))
 		return (1);
@@ -41,7 +41,7 @@ int	infer_equal_if(char **tab)
 
 int	superior_if(char **tab)
 {
-	if (is_num(tab[0]) != 1 || is_num(tab[2]) != 1)
+	if (is_num_for_if(tab[0]) != 1 || is_num_for_if(tab[2]) != 1)
 		return (-1);
 	if (atoi(tab[0]) > atoi(tab[2]))
 		return (1);

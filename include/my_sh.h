@@ -178,7 +178,7 @@ int	modulo_if(char **);
 
 /*UTILS_IF.C*/
 char	*take_inside_parentheses(char *);
-int	is_num(char *);
+int	is_num_for_if(char *);
 int	verif_null_tab(char **);
 int	length_tab(char **);
 
