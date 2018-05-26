@@ -19,6 +19,7 @@
 #include <glob.h>
 #include <fcntl.h>
 #include "shell.h"
+#include <grp.h>
 #include "my_printf.h"
 #define FLAGS_OPEN_BIS S_IRGRP | S_IWGRP | S_IWUSR
 #define FLAGS_OPEN O_WRONLY | O_CREAT, S_IRUSR
