@@ -11,7 +11,7 @@ int	my_cd_path_opendir(t_mini *mini)
 {
 	write(2, mini->tab[1], my_strlen(mini->tab[1]));
 	if (errno == EACCES)
-		printf(": Permission denied.\n");
+		write(2, ": Permission denied.\n", 21);
 	else
 		write(2, ": Not a directory.\n", 19);
 	return (1);
