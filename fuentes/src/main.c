@@ -18,6 +18,7 @@ int	main(int ac, char **av, char **env)
 
 	check_signals(&use);
 	list = get_env(env, list);
+	use.alias = NULL;
 	while (42) {
 		(isatty(0) == 1) ?
 			my_printf("\033[1m\033[32m→ mini_shell: \033[0m") : 0;

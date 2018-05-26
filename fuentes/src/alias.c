@@ -9,69 +9,94 @@
 #include "../include/gnl.h"
 #include "../include/minih.h"
 
-char	*my_strncpy(char *src, int start, int end)
+char	**replace_alias(char **tab, use_value *use)
 {
-	char *dest = malloc(sizeof(char) * end+1);
 	int	a = -1;
+	int	b = -1;
 
-	src[start] == ' ' ? start += 1: 0;
-	while (src[++a] && a < end) {
-		dest[a] = src[start];
-		start += 1;
-	}
-	dest[a] = '\0';
-	return (dest);
-}
-
-int	count_alias(char *str)
-{
-	int	a = 5;
-	int	word = 0;
-
-	while (str[++a])
-		if (str[a] == ' ')
-			word += 1;
-	return (word);
-}
-
-char	**is_space(char *str, int *a, int b)
-{
-	char	*save = malloc(sizeof(char) * strlen(str) + 1);
-	static	int	savezer;
-	static	int	saveis = 0;
-
-	b == 0 ? (savezer = 0) : (savezer = saveis);
-	while (str[*a] && str[++*a] != ' ');
-	saveis = *a;
-	save = my_strncpy(str, savezer, *a);
-	return (my_str_to_word_tab(save, ' '));
-}
-
-char	***put_in(char *str, char ***tab)
-{
-	int	a = 0;
-	int	b = 0;
-
-	while (str[++a]) {
-		if (str[a] == ' ') {
-			tab[b] = is_space(str, &a, b);
-			tab[b][3] = NULL;
-			b += 1;
-			a += 1;
+	if (use->alias == NULL)
+		return (tab);
+	while (tab[++a]) {
+		while (use->alias[++b] && use->alias[b][0]) {
+			if ((strcmp(tab[a], use->alias[b][0]) == 0)) {
+				tab[a] = strdup(use->alias[b][1]);
+				return (tab);
+			}
 		}
+		b = -1;
 	}
-	b += 1;
-	tab[b] = NULL;
 	return (tab);
 }
 
-void	alias_func(use_value *use)
+int	alias_lenght(char **tab)
 {
-	int	quotes = 0;
-	quotes = count_alias(use->epured);
-	use->alias = malloc(sizeof(char **) * quotes);
-	use->alias = put_in(use->epured+6, use->alias);
-	print_tab(use->alias[0]);
-	printf("------------------\n");
-	print_tab(use->alias[1]);
+	int	a = -1;
+
+	if (!tab)
+		return (0);
+	while (tab[++a]);
+	return (a);
+}
+
+void	malloc_alias(char **tab, use_value *use)
+{
+	static	int	how = 0;
+	int	size = alias_lenght(tab);
+
+	how == 0 ? (use->alias = malloc(sizeof(char **) * 40)) : 0;
+	use->alias[how] = malloc(sizeof(char *) * 3);
+	use->alias[how][0] = malloc(sizeof(char) * strlen(tab[1]) + 3);
+	use->alias[how][1] = malloc(sizeof(char) * strlen(tab[2]) + 3);
+	use->alias[how][2] = NULL;
+	how += 1;
+	use->alias[how] = NULL;
+}
+
+void	put_in_alias(char **tab, use_value *use)
+{
+	static	int	how = 0;
+
+	use->alias[how][0] = tab[1];
+	use->alias[how][1] = tab[2];
+	how += 1;
+}
+
+void	print_aliaszer(char **tab)
+{
+	int	a = -1;
+
+	while (tab[++a])
+		printf("%s ", tab[a]);
+	printf("\n");
+}
+
+void	print_alias(char ***tab)
+{
+	int	a = -1;
+	int	b = -1;
+
+	if (tab[0] == NULL)
+		return;
+	while (tab[++a]) {
+		print_aliaszer(tab[a]);
+	}
+}
+
+void	alias_func(char **tab, use_value *use)
+{
+	static	int	b = 0;
+	int	size = 0;
+
+	size = alias_lenght(tab);
+	if (size == 1)
+		print_alias(use->alias);
+	else if (size > 3)
+		return;
+	else if (tab[2] == NULL)
+		use->exit = 1;
+	else {
+		malloc_alias(tab, use);
+		put_in_alias(tab , use);
+	}
+	b += 1;
 }

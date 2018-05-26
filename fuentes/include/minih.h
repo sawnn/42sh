@@ -80,5 +80,8 @@ s_list	*add_link(s_list *list, char *str);
 s_list	*rm_link(s_list *list, char *str);
 
 void	redirections(use_value *use);
-void	alias_func(use_value *use);
+void	alias_func(char **tab, use_value *use);
+char	**replace_alias(char **tab, use_value *use);
+
+void	print_alias(char ***tab);
 #endif	/* MINI_H_ */

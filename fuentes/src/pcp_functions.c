@@ -13,6 +13,7 @@ int	single_instruct(use_value *use, s_list *list, char **av, char **env)
 {
 	int	func = 0;
 
+	replace_alias(use->arg, use);
 	func = pcp_func(use, list, av, env);
 	if (func == 0) {
 		(isatty(0)) ? my_puterror("exit\n") : 0;
@@ -24,7 +25,7 @@ int	single_instruct(use_value *use, s_list *list, char **av, char **env)
 	func == 4 ? setenv_func(use, env, list) : 0;
 	func == 5 ? unsetenv_func(use, env, list) : 0;
 	func == 6 ? print_list(list): 0;
-	func == 7 ? alias_func(use): 0;
+	func == 7 ? alias_func(use->arg, use): 0;
 	return (1);
 }
 
@@ -35,6 +36,7 @@ int	or_and_instruct(use_value *use, s_list *list, char **av, char **env)
 
 	while (use->multi[++c]){
 		use->arg = my_str_to_word_tab(epur_str(use->multi[c]), ' ');
+		replace_alias(use->arg, use);
 		func = pcp_func(use, list, av, env);
 		if (func == 0) {
 			(isatty(0)) ? my_puterror("exit\n") : 0;
@@ -46,6 +48,7 @@ int	or_and_instruct(use_value *use, s_list *list, char **av, char **env)
 		func == 4 ? setenv_func(use, env, list) : 0;
 		func == 5 ? unsetenv_func(use, env, list) : 0;
 		func == 6 ? print_list(list): 0;
+		func == 7 ? alias_func(use->arg, use): 0;
 		if ((use->exit == 1 && use->o_a == '&')
 		|| (use->exit == 0 && use->o_a == '|'))
 			return (1);
@@ -54,12 +57,14 @@ int	or_and_instruct(use_value *use, s_list *list, char **av, char **env)
 }
 
 int	multi_instruct(use_value *use, s_list *list, char **av, char **env)
+
 {
 	int	func = 0;
 	int	c = -1;
 
 	while (use->multi[++c]){
 		use->arg = my_str_to_word_tab(epur_str(use->multi[c]), ' ');
+		replace_alias(use->arg, use);
 		func = pcp_func(use, list, av, env);
 		if (func == 0) {
 			(isatty(0)) ? my_puterror("exit\n") : 0;
@@ -71,6 +76,7 @@ int	multi_instruct(use_value *use, s_list *list, char **av, char **env)
 		func == 4 ? setenv_func(use, env, list) : 0;
 		func == 5 ? unsetenv_func(use, env, list) : 0;
 		func == 6 ? print_list(list): 0;
+		func == 7 ? alias_func(use->arg, use): 0;
 	}
 	return (1);
 }
