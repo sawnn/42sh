@@ -63,32 +63,25 @@ int	is_path(t_mini *mini, node *tmp, int i)
 
 int	check_path(t_mini *mini, node **head, int no_path)
 {
-	int	i = 0;
-	node	*tmp = (*head);
-
+	int	i = 0; node	*tmp = (*head);
 	if (mini->tab[0][0] == '/') {
 		if (access(mini->tab[0], F_OK) == 0) {
 			mini->rpath = mini->tab[0];
 			return (0);
-		}
-		return (-1);
-	}
-	if (tmp == NULL) {
+		} return (-1);
+	} if (tmp == NULL) {
 		my_env(mini, head);
 		tmp = (*head);
-	}
-	while (tmp != NULL) {
-		if (my_strncmp(tmp->str, "PATH=", 5) == 0) {
+	} while (tmp != NULL) { if (my_strncmp(tmp->str, "PATH=", 5) == 0) {
+			mini->fullpath = strdup(tmp->str);
 			no_path = 1;
 			break;
 		}
 		i = i + 1;
 		tmp = tmp->next;
 	}
-	if (no_path == 0)
-		return (check_remove_path(mini));
-	if (no_path == 1 && (my_strcmp(tmp->str, "PATH=") == 0))
-		return (-1);
+	if (no_path == 0) return (check_remove_path(mini));
+	if (no_path == 1 && (my_strcmp(tmp->str, "PATH=") == 0)) return (-1);
 	return (is_path(mini, tmp, i));
 }
 

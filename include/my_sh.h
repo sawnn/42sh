@@ -38,6 +38,7 @@ typedef	struct	s_mini {
 	char	**path;
 	char	*rpath;
 	char	*pwd;
+	char	*fullpath;
 	char	*old;
 	char	***cmd;
 	char	*savehome;
@@ -160,6 +161,26 @@ int	only_alph(char *);
 /*CALL_BUILT.C*/
 int	call_builtins(int, t_mini *, node **);
 int	is_builtins(t_mini *, node **);
+
+/*IF.C*/
+void	print_tab(char **);
+
+/*FUNC_IF.C*/
+int	equal_if(char **);
+int	diff_if(char **);
+int	infer_if(char **);
+int	infer_equal_if(char **);
+int	superior_if(char **);
+
+/*FUNC_IF_BIS.C*/
+int	superior_equal_if(char **);
+int	modulo_if(char **);
+
+/*UTILS_IF.C*/
+char	*take_inside_parentheses(char *);
+int	is_num(char *);
+int	verif_null_tab(char **);
+int	length_tab(char **);
 
 //		*PATH*			//
 
