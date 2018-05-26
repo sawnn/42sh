@@ -61,9 +61,16 @@ int	my_call_cd(t_mini *mini, node **head)
 		mini->cd_d = 1;
 	}
 	if (mini->tab[1] && mini->tab[2]) {
-		printf("cd: Too many arguments.\n");
-		mini->global = 1;
-		return (mini->global);
+		if (strcmp(mini->tab[1], "-"))
+			printf("cd: Too many arguments.\n");
+		else if (strcmp(mini->tab[2], "--") || mini->tab[3])
+			write(2, "Usage: cd [-plvn][-|<dir>].\n", 28);
+		else
+			mini->tab[2] = NULL;
+		if (mini->tab[2]) {
+			mini->global = 1;
+			return (mini->global);
+		}
 	}
 	if ((*head) == NULL)
 		my_env(mini, head);
