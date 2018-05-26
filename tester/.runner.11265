@@ -1,8 +1,0 @@
-#!/bin/bash
-export VAR1=VALEUR1 ; OLDPATH=$PATH ; PATH='/random'
-/bin/bash -c './/.tester.11265 | /workspace/Minishell_2017/tester/mysh ; echo Shell exit with code $?' > .//.shell.11265 2>&1
-PATH=$OLDPATH
-export VAR1=VALEUR1 ; OLDPATH=$PATH ; PATH='/random'
-
-/bin/bash -c './/.tester.11265 | /bin/tcsh -f ; echo Shell exit with code $?' > .//.refer.11265 2>&1
-PATH=$OLDPATH

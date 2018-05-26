@@ -1,6 +1,0 @@
-#!/bin/bash
-  echo 'setenv | /bin/grep VAR1'
-  echo '/bin/ls | cd /usr'
-  echo 'ls -l'
-  echo 'exit 45|cat /etc/resolv.conf'
-
