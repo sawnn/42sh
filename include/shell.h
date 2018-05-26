@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 typedef struct s_set
 {
 	char *op;
@@ -23,13 +24,12 @@ typedef struct s_shell
 {
 	t_set *list;
 }		t_shell;
-
 #include "my_sh.h"
 
 void	fct_set(char **, t_shell*);
 int	check_egual_tab(char **);
-char	*dollars(char *, t_set *);
 char	**my_str_to_wordtab(char *, char);
+char	*dollars(char *, t_set *, node **);
 int	check_egual(char *str);
 t_set	*addd_link(t_set *, char *, char *);
 
