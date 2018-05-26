@@ -1,6 +1,0 @@
-total 24
--rwxr-xr-x 1 root root 8640 May 26 12:58 a.out
--rw-r--r-- 1 root root 1150 May 26 12:55 my_str_to_wordtab.c
--rw-r--r-- 1 root root    0 May 26  2018 toto
--rw-r--r-- 1 root root  635 May 26 12:58 where.c
--rw-r--r-- 1 root root  110 May 26 08:38 where.c~

@@ -5,12 +5,16 @@
 ** gaspacho andalou
 */
 
-int	which(void *alias)
+int	my_which(t_mini *mini, NOU node **head)
 {
-	return (0);
-}
+	int	i = -1;
 
-int	main()
-{
-	return (0);
+	while (mini->alias[++i]) {
+		if (strcmp(mini->tab[1], mini->alias[i][0]) == 0) {
+			printf("%s is aliased to %s\n",
+			mini->tab[1], mini->alias[i][1]);
+			return (0);
+		}
+	}
+	return (1);
 }
