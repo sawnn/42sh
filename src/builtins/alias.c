@@ -86,6 +86,8 @@ int	alias_func(t_mini *mini, NOU node **head)
 	size = alias_lenght(tab);
 	if (size == 1)
 		print_alias(mini->alias);
+	else if(!tab[2])
+		return (0);
 	else if (size > 3)
 		return (0);
 	else {

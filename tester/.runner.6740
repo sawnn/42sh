@@ -1,0 +1,8 @@
+#!/bin/bash
+
+/bin/bash -c './/.tester.6740 | /workspace/Minishell_2017/PSU_minishell2_2017/tester/mysh ; echo Shell exit with code $?' > .//.shell.6740 2>&1
+
+
+
+/bin/bash -c './/.tester.6740 | /bin/tcsh -f ; echo Shell exit with code $?' > .//.refer.6740 2>&1
+

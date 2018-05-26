@@ -1,0 +1,6 @@
+ls | cat -e > tmp > tmp2
+cat -e <> damn
+cat -e <  < end
+ls && && echo KO
+ls || || echo KO
+ls && || echo KO

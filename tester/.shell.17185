@@ -1,0 +1,18 @@
+setenv: Variable name must contain alphanumeric characters.
+/bin/ls: cannot access '|': No such file or directory
+/bin/ls: cannot access 'cd': No such file or directory
+/usr:
+bin
+games
+include
+lib
+lib64
+libexec
+local
+sbin
+share
+src
+tmp
+ls: Command not found.
+exit: Expression Syntax.
+Shell exit with code 1

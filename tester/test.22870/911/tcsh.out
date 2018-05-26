@@ -1,0 +1,16 @@
+drwxr-xr-x  2 root root   4096 Feb 10  2017 bash_completion.d
+-rw-r--r--  1 root root   2837 Dec  7  2016 bashrc
+-rw-r--r--  1 root root   1602 Dec  7  2016 csh.cshrc
+-rw-r--r--  1 root root    841 Dec  7  2016 csh.login
+----------  1 root root    373 Mar 22 12:35 gshadow
+----------  1 root root    360 Mar 22 12:35 gshadow-
+-rw-r--r--  1 root root   1128 May 29  2017 kshrc
+lrwxrwxrwx  1 root root     29 Mar  7 06:49 localtime -> ../usr/share/zoneinfo/Etc/UTC
+-rw-r--r--  1 root root    523 Mar 20  2017 rhashrc
+----------  1 root root    534 Mar 22 12:35 shadow
+----------  1 root root    512 Mar  7 06:49 shadow-
+-rw-r--r--  1 root root    190 Mar 22 12:38 shells
+drwxr-xr-x  3 root root   4096 Mar 22 12:35 ssh
+-rw-r--r--  1 root root    510 Mar  6 15:46 zshenv
+-rw-r--r--  1 root root   1135 Mar  6 15:46 zshrc
+Shell exit with code 0

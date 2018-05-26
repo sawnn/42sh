@@ -1,0 +1,4 @@
+VAR1=VALEUR1
+ls: Command not found.
+exit: Expression Syntax.
+Shell exit with code 1
