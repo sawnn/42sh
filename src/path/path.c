@@ -66,6 +66,13 @@ int	check_path(t_mini *mini, node **head, int no_path)
 	int	i = 0;
 	node	*tmp = (*head);
 
+	if (mini->tab[0][0] == '/') {
+		if (access(mini->tab[0], F_OK) == 0) {
+			mini->rpath = mini->tab[0];
+			return (0);
+		}
+		return (-1);
+	}
 	if (tmp == NULL) {
 		my_env(mini, head);
 		tmp = (*head);
