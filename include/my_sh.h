@@ -109,6 +109,12 @@ void	get_simple_env(node **);
 
 //		*BUILTINS*		//
 
+/*WHICH.C*/
+int	my_which(t_mini *, node **);
+
+/*WHERE.C*/
+int	my_where(t_mini *, node **);
+
 /*ALIAS.C*/
 int	alias_func(t_mini *, node **);
 char	**replace_alias(char **, t_mini *);

@@ -16,7 +16,7 @@ int	my_where(t_mini *mini, NOU node **head)
 	my_which(mini, head);
 	while (tab[++i] != NULL) {
 		tmp = strcat(tab[i], "/");
-		tmp = strcat(tmp, str);
+		tmp = strcat(tmp, mini->tab[1]);
 		if (access(tmp, F_OK) == 0) {
 			printf("%s\n", tmp);
 			free(tmp);
