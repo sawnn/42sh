@@ -9,6 +9,15 @@
 #include "string.h"
 #define epur	my_epure_str
 
+void	print_tab(char **tab)
+{
+	int	i = -1;
+
+	printf("\n--------TAB------\n");
+	while (tab[++i])
+		printf("tab[%d] = %s\n", i, tab[i]);
+}
+
 int	call_func_if(int i, char **tab)
 {
 	int	(*fptr[8])(char **);

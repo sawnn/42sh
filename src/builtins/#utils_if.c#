@@ -23,14 +23,6 @@ int	is_num(char *str)
 	return (1);
 }
 
-int	length_tab(char **tab)
-{
-	int	i = -1;
-
-	while (tab[++i]);
-	return (i);
-}
-
 int	verif_null_tab(char **tab)
 {
 	if (!tab[0] || !tab[1] || !tab[2] || !tab[3])
