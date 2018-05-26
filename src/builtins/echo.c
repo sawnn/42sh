@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** my_echo
+** echo.c
 ** File description:
-** gaspacho andalou
+** a
 */
 
-#include "my.h"
+#include "../../include/my_sh.h"
 
 int	find_char(char *str, char c)
 {
@@ -42,17 +42,17 @@ int	get_echo(char **av)
 
 int	is_n(char *str)
 {
-	int	i = -1;
-
 	if (str[0] == '-')
 		return (str[1] == 'n' ? 1 : 0);
 	return (0);
 }
 
-int	my_echo(char **tab)
+int	my_echo(t_mini *mini, NOU node **head)
 {
+	char **tab = mini->tab;
 	int	len = len_tab(tab);
 
+	//if (head || !(head));
 	if (len < 2) {
 		write(1, "\n", 1);
 		return (0);

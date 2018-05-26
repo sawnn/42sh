@@ -1,14 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** scripting
+** script.c
 ** File description:
-** gaspacho andalou
+** a
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <sys/stat.h>
+#include "../../include/my_sh.h"
 
 int	my_comp(char *s1, char *s2)
 {
@@ -46,7 +43,7 @@ int	is_script(char *str)
 	int	fd = open(&str[2], O_RDONLY);
 	char	*tmp = NULL;
 
-	if (fd == -1 && check_sh(str) == 1)
+	if (fd != -1 && check_sh(str) == 1)
 		tmp = get_next_line(fd);
 	else
 		return (0);
@@ -55,11 +52,5 @@ int	is_script(char *str)
 		return (fd);
 	}
 	free(tmp);
-	return (0);
-}
-
-int	main()
-{
-	is_script(".sh");
 	return (0);
 }

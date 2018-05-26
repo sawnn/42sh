@@ -32,7 +32,19 @@ char	*get_prompt(NOU node *list)
 
 void	my_prompt(t_mini *mini, node **head)
 {
-	if (isatty(0) == 1)
+	int fd = mini->fd;
+
+	if (mini->fd == 0 && isatty(0) == 1)
 		my_printf(get_prompt((*head)));
-	mini->buf = get_next_line(0);
+	mini->buf = get_next_line(mini->fd);
+	if (mini->buf && mini->buf[0] && mini->fd == 0)
+		mini->fd = is_script(my_str_to_word_array(mini->buf)[0]);
+	if (mini->fd != fd)
+		mini->buf = get_next_line(mini->fd);
+	if (mini->buf == NULL && mini->fd != 0) {
+		mini->fd = 0;
+			if (isatty(0) == 1)
+				my_printf(get_prompt((*head)));
+		mini->buf = get_next_line(mini->fd);
+	}
 }

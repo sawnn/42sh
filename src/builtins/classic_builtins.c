@@ -52,6 +52,18 @@ int	my_call_unsetenv(t_mini *mini, node **head)
 
 int	my_call_cd(t_mini *mini, node **head)
 {
+	int i = 1;
+	int j = 0;
+	if (mini->tab[1] && strcmp(mini->tab[1], "--") == 0 && mini->tab[2]) {
+		while (mini->tab[++i])
+			mini->tab[++j] = strdup(mini->tab[i]);
+		mini->tab[++j] = NULL;
+	}
+	if (mini->tab[1] && mini->tab[2]) {
+		printf("cd: Too many arguments.\n");
+		mini->global = 1;
+		return (mini->global);
+	}
 	if ((*head) == NULL)
 		my_env(mini, head);
 	mini->global = new_cd(mini, head);

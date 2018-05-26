@@ -52,6 +52,7 @@ typedef	struct	s_mini {
 	int	no_path;
 	int	exitt;
 	int	bool;
+	int	fd;
 	t_shell *shell;
 } t_mini;
 #include "tree.h"
@@ -102,6 +103,14 @@ char	*get_next_line(int);
 void	get_simple_env(node **);
 
 //		*BUILTINS*		//
+
+/*ECHO.C*/
+int	my_echo(t_mini *, node**);
+int	find_char(char *, char);
+
+/*SPECIAL.C*/
+int	special_char(char **);
+int	is_special(char **);
 
 /*call_set.c*/
 char	**check_dollar(char **, t_mini *);
@@ -154,6 +163,9 @@ int	check_path(t_mini *, node **, int);
 int	which_exec(t_mini *);
 
 //		*PARSING*		//
+
+/*SCRIPT.C*/
+int	is_script(char *);
 
 /*GlOBBING.C*/
 char	**my_glob(char **);
