@@ -40,7 +40,7 @@ char	**cut(char *str, char *pick, char **bac, int i)
 	while (pick && bac && ++k < my_strlen(str)) {
 		i = k;
 		
-		while ((str[k] != '&' && str[k] != '|' && str[k] != '>' && str[k] != '<' && str[k] != '(' && str[k] != ')' && str[k] != ';' && str[k] >= 33 && str[k] <= 126) || (tmp % 2)) {
+		while (str[k] && (str[k] != '&' && str[k] != '|' && str[k] != '>' && str[k] != '<' && str[k] != '(' && str[k] != ')' && str[k] != ';' && str[k] >= 33 && str[k] <= 126) || (tmp % 2)) {
 			if (str[k] == '"') {
 				tmp++;
 				k++;
@@ -49,18 +49,20 @@ char	**cut(char *str, char *pick, char **bac, int i)
 		}
 		if ((str[k] == '&' || str[k] == '|' || str[k] == '>' || str[k] == '<' || str[k] == '(' || str[k] == ')' || str[k] == ';' )) {
 			c = str[k];
-			if (str[k] == '(' || str[k] == ')' || i != k) {
+			if (((str[k] == '(' || str[k] == ')' ))) {
 				if (i == k) {
 					pick[a++] = c;
 					
 				} else
 					cmp = 1;
+			} else if (i != k) {
 				pick[a++] = 0;
 				bac[j++] = strdup(pick);
 			}
+				
 			a = 0;
 		}
-		while (str[k] == c && str[k] != '(' && str[k] != ')')
+		while (c && str[k] == c && str[k] != '(' && str[k] != ')')
 			pick[a++] = str[k++];
 			
 	

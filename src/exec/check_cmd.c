@@ -9,6 +9,9 @@
 
 int	check_cmd(t_mini *mini, node **head)
 {
+	int i = -1;
+	while (mini->tab[++i]);
+	//printf("%s\n", mini->tab[i]);
 	if ((mini->tab = my_glob(mini->tab)) == NULL)
 		return ((mini->global = 1));
 	if (is_builtins(mini, head) != -1);

@@ -43,6 +43,7 @@ int	minishell(t_mini *mini, node **head)
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
 		// checker les guillemet #zack
+
 		mini->head = head;
 		save_env(mini, head);
 		if (mini->tab[0])

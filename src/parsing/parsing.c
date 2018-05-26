@@ -22,8 +22,8 @@ char	*parsor_checker(int i, char *str)
 	char *	(*fptr[4])(char *);
 
 	fptr[0] = clear_string;
-	fptr[1] = clear_semicolon;
-	fptr[2] = check_parentheses;
+	fptr[1] = check_parentheses;
+	//fptr[2] = clear_semicolon;
 	fptr[3] = NULL;
 	return ((*fptr[i])(str));
 }
@@ -32,7 +32,7 @@ char	*launch_checker_parsor(t_mini *mini, char *str)
 {
 	int	i = 0;
 
-	while (i != 3) {
+	while (i != 2) {
 		if (parsor_checker(i, str) == NULL) {
 			mini->global = 1;
 			return (NULL);
