@@ -18,7 +18,6 @@
 #include <unistd.h>
 #include <glob.h>
 #include <fcntl.h>
-#include "shell.h"
 #include <grp.h>
 #include "my_printf.h"
 #define FLAGS_OPEN_BIS S_IRGRP | S_IWGRP | S_IWUSR
@@ -29,6 +28,7 @@ typedef	struct	s_node {
 	char	*str;
 	struct	s_node	*next;
 } node;
+#include "shell.h"
 
 typedef	struct	s_mini {
 	char	**tab;
@@ -55,7 +55,9 @@ typedef	struct	s_mini {
 	int	fd;
 	t_shell *shell;
 } t_mini;
+#include "shell.h"
 #include "tree.h"
+
 #define	EXEC	execve(mini->rpath, *cmd, mini->env)
 
 //				LIB				//

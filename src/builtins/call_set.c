@@ -23,7 +23,7 @@ char	**check_dollar(char **tab, t_mini *mini)
 	while (tab[++i]) {
 		while (tab[i][++j])
 			if (tab[i][j] == '$' && tab[i][j + 1]) {
-				tmp = dollars(&tab[i][j + 1], mini->shell->list);
+				tmp = dollars(&tab[i][j + 1], mini->shell->list, mini->head);
 				if (!tmp)
 					return (NULL);
 				tab[i][j] = '\0';
