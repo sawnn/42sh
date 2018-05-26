@@ -40,6 +40,9 @@ int	minishell(t_mini *mini, node **head)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
 		mini->tab = check_dollar(mini->tab, mini);
+		//int i = -1;
+		//while (mini->tab[++i])
+		//	printf("%s\n", mini->tab[i]);
 		// rendre propre la ligne de commande #theo ok
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
