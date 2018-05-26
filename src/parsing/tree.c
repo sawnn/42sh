@@ -47,7 +47,7 @@ int	find_bigger(char **tab)
 {
 	int i = -1;
 	int j = -1;
-	char *ope[8] = {";", "&&", "||", ">", ">>", "<", "<<", NULL};
+	char *ope[8] = {";", "&&", "||", "<", "<<", ">", ">>", NULL};
 
 	if (!tab)
 		return (-1);
