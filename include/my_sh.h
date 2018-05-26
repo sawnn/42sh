@@ -48,6 +48,7 @@ typedef	struct	s_mini {
 	node	**head;
 	int	j;
 	int	min;
+	char	***alias;
 	int	cd;
 	int	b_exit;
 	int	no_path;
@@ -106,6 +107,10 @@ char	*get_next_line(int);
 void	get_simple_env(node **);
 
 //		*BUILTINS*		//
+
+/*ALIAS.C*/
+int	alias_func(t_mini *, node **);
+char	**replace_alias(char **, t_mini *);
 
 /*ECHO.C*/
 int	my_echo(t_mini *, node**);

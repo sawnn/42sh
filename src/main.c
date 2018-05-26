@@ -40,6 +40,7 @@ int	minishell(t_mini *mini, node **head)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
 		mini->tab = check_dollar(mini->tab, mini);
+		mini->tab = replace_alias(mini->tab, mini);
 		//int i = -1;
 		//while (mini->tab[++i])
 		//	printf("%s\n", mini->tab[i]);
@@ -63,6 +64,7 @@ int	main(NOU int ac, NOU char **av, char **env)
 
 	if ((mini.shell = malloc(sizeof(t_shell))) == NULL)
 		return (84);
+	mini.alias = NULL;
 	mini.cd_d = 0;
 	mini.exitt = 0;
 	mini.bool = 0;
