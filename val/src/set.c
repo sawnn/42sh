@@ -52,12 +52,17 @@ int	main(int ac, char **av, char **env)
 	t_shell *sh;
 	char *str = NULL;
 
-	if ((sh = malloc(sizeof(t_shell))) == NULL)
+	if ((sh = malloc(sizeof(t_shell))) == NULL) {
+		printf("la\n");
 		return (84);
-	if (ac == 1)
+	}
+	if (ac == 1) {
+		printf("ici\n");
 		return (84);
+	}
 	if (strcmp(av[1], "set") == 0)
 		fct_set(&av[2], env, sh);
+	printf("%c\n", av[1][0]);
 	if (av[1][0] == '$') {
 		sh->list = add_link(sh->list, "val", "delcroix");
 		sh->list = add_link(sh->list, "zack", "folle");

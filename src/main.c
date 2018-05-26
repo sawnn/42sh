@@ -38,8 +38,7 @@ int	minishell(t_mini *mini, node **head)
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
-		if ((mini->tab = check_dollar(mini->tab, mini)) == NULL)
-			mini->tab[0] = NULL;
+		mini->tab = check_dollar(mini->tab, mini);
 		// rendre propre la ligne de commande #theo ok
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
@@ -47,7 +46,7 @@ int	minishell(t_mini *mini, node **head)
 
 		mini->head = head;
 		save_env(mini, head);
-		if (mini->tab[0])
+		if (mini->tab && mini->tab[0])
 			tree(mini->tab, mini);
 	}
 	return (mini->global);

@@ -1,5 +1,5 @@
 /*
-1;5002;0c** EPITECH PROJECT, 2018
+** EPITECH PROJECT, 2018
 ** shell
 ** File description:
 ** .h
