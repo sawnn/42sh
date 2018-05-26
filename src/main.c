@@ -38,7 +38,7 @@ int	minishell(t_mini *mini, node **head)
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
-		if (mini->tab = check_dollar(mini->tab, mini) == NULL)
+		if ((mini->tab = check_dollar(mini->tab, mini)) == NULL)
 			mini->tab[0] = NULL;
 		// rendre propre la ligne de commande #theo ok
 		// cheeck si ya le nom d'un alias ou dune variable
