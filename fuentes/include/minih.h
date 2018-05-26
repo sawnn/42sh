@@ -17,6 +17,7 @@ typedef	struct	use_value
 	char	*envi;
 	char	**path;
 	char	**arg;
+	char	**b_arg;
 	char	**multi;
 	char	***alias;
 	int	points;
@@ -84,4 +85,5 @@ void	alias_func(char **tab, use_value *use);
 char	**replace_alias(char **tab, use_value *use);
 
 void	print_alias(char ***tab);
+char	**strdup_tab(char **tab);
 #endif	/* MINI_H_ */

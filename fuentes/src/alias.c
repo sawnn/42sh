@@ -18,10 +18,8 @@ char	**replace_alias(char **tab, use_value *use)
 		return (tab);
 	while (tab[++a]) {
 		while (use->alias[++b] && use->alias[b][0]) {
-			if ((strcmp(tab[a], use->alias[b][0]) == 0)) {
+			if ((strcmp(tab[a], use->alias[b][0]) == 0))
 				tab[a] = strdup(use->alias[b][1]);
-				return (tab);
-			}
 		}
 		b = -1;
 	}
@@ -44,6 +42,8 @@ void	malloc_alias(char **tab, use_value *use)
 	int	size = alias_lenght(tab);
 
 	how == 0 ? (use->alias = malloc(sizeof(char **) * 40)) : 0;
+	printf("HOW = %d\n", how);
+	use->alias[0] == NULL ? how = 0 : 0;
 	use->alias[how] = malloc(sizeof(char *) * 3);
 	use->alias[how][0] = malloc(sizeof(char) * strlen(tab[1]) + 3);
 	use->alias[how][1] = malloc(sizeof(char) * strlen(tab[2]) + 3);
@@ -95,8 +95,12 @@ void	alias_func(char **tab, use_value *use)
 	else if (tab[2] == NULL)
 		use->exit = 1;
 	else {
-		malloc_alias(tab, use);
-		put_in_alias(tab , use);
+//		if (is_alpha(tab[1]) == -1 || is_alpha(tab[2]) == -1)
+//			use->exit = 1;
+//		else {
+			malloc_alias(tab, use);
+			put_in_alias(tab , use);
+//		}
 	}
 	b += 1;
 }

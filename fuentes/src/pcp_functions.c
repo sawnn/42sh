@@ -13,6 +13,7 @@ int	single_instruct(use_value *use, s_list *list, char **av, char **env)
 {
 	int	func = 0;
 
+	use->b_arg = strdup_tab(use->arg);
 	replace_alias(use->arg, use);
 	func = pcp_func(use, list, av, env);
 	if (func == 0) {
@@ -26,6 +27,7 @@ int	single_instruct(use_value *use, s_list *list, char **av, char **env)
 	func == 5 ? unsetenv_func(use, env, list) : 0;
 	func == 6 ? print_list(list): 0;
 	func == 7 ? alias_func(use->arg, use): 0;
+	func == 8 ? unalias_func(use->arg, use): 0;
 	return (1);
 }
 
@@ -36,6 +38,7 @@ int	or_and_instruct(use_value *use, s_list *list, char **av, char **env)
 
 	while (use->multi[++c]){
 		use->arg = my_str_to_word_tab(epur_str(use->multi[c]), ' ');
+		use->b_arg = strdup_tab(use->arg);
 		replace_alias(use->arg, use);
 		func = pcp_func(use, list, av, env);
 		if (func == 0) {
@@ -49,6 +52,7 @@ int	or_and_instruct(use_value *use, s_list *list, char **av, char **env)
 		func == 5 ? unsetenv_func(use, env, list) : 0;
 		func == 6 ? print_list(list): 0;
 		func == 7 ? alias_func(use->arg, use): 0;
+		func == 8 ? unalias_func(use->arg, use): 0;
 		if ((use->exit == 1 && use->o_a == '&')
 		|| (use->exit == 0 && use->o_a == '|'))
 			return (1);
@@ -64,6 +68,7 @@ int	multi_instruct(use_value *use, s_list *list, char **av, char **env)
 
 	while (use->multi[++c]){
 		use->arg = my_str_to_word_tab(epur_str(use->multi[c]), ' ');
+		use->b_arg = strdup_tab(use->arg);
 		replace_alias(use->arg, use);
 		func = pcp_func(use, list, av, env);
 		if (func == 0) {
@@ -77,6 +82,7 @@ int	multi_instruct(use_value *use, s_list *list, char **av, char **env)
 		func == 5 ? unsetenv_func(use, env, list) : 0;
 		func == 6 ? print_list(list): 0;
 		func == 7 ? alias_func(use->arg, use): 0;
+		func == 8 ? alias_func(use->arg, use): 0;
 	}
 	return (1);
 }
@@ -107,8 +113,10 @@ int	pcp_func(use_value *use, s_list *list, char **av, char **env)
 		return (5);
 	else if (my_strcmp("env", use->arg[use->b]) == 0)
 		return (6);
-	else if (my_strcmp("alias", use->arg[use->b]) == 0)
+	else if (my_strcmp("alias\0", use->arg[use->b]) == 0)
 		return (7);
+	else if (my_strcmp("unalias\0", use->arg[use->b]) == 0)
+		return (8);
 	return (1);
 }
 
