@@ -197,7 +197,7 @@ char	**check_null(char **tab)
 int	check_ope(char *op)
 {
 	int i = -1;
-	char *tab[8] = {";", "&&", "||", ">", "<", "<<", ">>", NULL};
+	char *tab[4] = {";", "&&", "||",  NULL};
 
 	if (!op)
 		return (0);
@@ -219,7 +219,9 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 		return (0);
 	}
 	(*list)->op = strdup(cmd->left[i]);
+//	printf("%s\n", cmd->left[i + 1]);
 	if (cmd->left[i + 1] && check_ope(cmd->left[i + 1])) {
+
 		if (check_r((*list)->op) == 0 && strcmp("||", (*list)->op) && strcmp("&&", (*list)->op)) {
 			tmp[0] = strdup(cmd->left[i + 1]);
 			tmp[1] = NULL;
@@ -240,7 +242,7 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 		cmd->right[cmd->r] = move_para(cmd->right[cmd->r]);
 		cmd->r += 1;
 		cmd->right = realloc(cmd->right, sizeof(char **) * (cmd->r + 1));
-	} else if (check_r(cmd->left[i]) == 0 && cmd->left[i + 1] == NULL) {
+	} else if (check_r(cmd->left[i]) == 0 && check_ope(cmd->left[i + 1]) == 0) {
 		if (strcmp(cmd->left[i], "||") && (strcmp(cmd->left[i], "&&")))
 			write(2, "Missing name for redirect\n", 26);
 		else
@@ -332,6 +334,9 @@ void	tree(char **str, t_mini *mini)
 	t_cmd cmd;
 	t_tree *list = malloc(sizeof(t_tree));
 
+	//i = -1;
+	//while (str[++i])
+	//	printf("%s\n", str[i]);
 	str = move_para(str);
 	i = find_bigger(str);
 	fill_cmd(&cmd, str);

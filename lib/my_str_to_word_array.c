@@ -52,9 +52,15 @@ char	**cut(char *str, char *pick, char **bac, int i)
 			if (((str[k] == '(' || str[k] == ')' ))) {
 				if (i == k) {
 					pick[a++] = c;
+					pick[a++] = 0;
+					bac[j++] = strdup(pick);
 					
-				} else
+				} else {
+					pick[a++] = 0;
+					bac[j++] = strdup(pick);
+					a = 0;
 					cmp = 1;
+				}
 			} else if (i != k) {
 				pick[a++] = 0;
 				bac[j++] = strdup(pick);
@@ -66,7 +72,7 @@ char	**cut(char *str, char *pick, char **bac, int i)
 			pick[a++] = str[k++];
 			
 	
-		if (str[k] != '(' && str[k] != ')' && ((str[k] < 33 && i != k) || str[k - 1] == c)) {
+		if (str[k] != '(' && str[k] != ')' && ((str[k] < 33 && i != k) || (k != 0 && str[k - 1] == c))) {
 			pick[a++] = '\0';
 			bac[j++] = strdup(pick);
 			if (c) {
