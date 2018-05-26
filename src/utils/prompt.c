@@ -37,7 +37,7 @@ void	my_prompt(t_mini *mini, node **head)
 	if (mini->fd == 0 && isatty(0) == 1)
 		my_printf(get_prompt((*head)));
 	mini->buf = get_next_line(mini->fd);
-	if (parse_quote(mini->buf) == 84) {
+	if (mini->buf && parse_quote(mini->buf) == 84) {
                         mini->buf[0] = '\0';
                         mini->global = 1;
 			return;
