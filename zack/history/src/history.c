@@ -66,7 +66,6 @@ int	check_history(char *str)
 			close(fd);
 			tab[i] ? write(fd, tab[i], my_strlen(tab[i])) : 0;
 			tab[i] ? write(fd, "\n", 1) : 0;
-			printf("there %s\n", tab[i]);
 			free(tab);
 			free(buf);
 			return (1);
