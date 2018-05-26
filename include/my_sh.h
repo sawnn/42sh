@@ -42,6 +42,7 @@ typedef	struct	s_mini {
 	char	***cmd;
 	char	*savehome;
 	char	*patht;
+	int	cd_d;
 	char	*str;
 	int	global;
 	node	**head;

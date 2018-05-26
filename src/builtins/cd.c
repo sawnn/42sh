@@ -14,12 +14,14 @@ int	my_cd_minus(t_mini *mini, node **head)
 	oldpwd = mini->old;
 	mini->old = mini->pwd;
 	mini->pwd = oldpwd;
-	if (mini->cd == 1 && chdir(mini->pwd) == 0) {
+	if (mini->cd_d == 0 && mini->cd == 1 && chdir(mini->pwd) == 0) {
 		replace_pwd(mini->pwd, head);
 		replace_oldpwd(mini->old, head);
 		return (0);
 	}
-	else if (mini->cd != 1 && chdir(mini->pwd) == -1) {
+	else if (mini->cd_d || (mini->cd != 1 && chdir(mini->pwd) == -1)) {
+		if (mini->cd_d)
+			write(2, mini->tab[1], strlen(mini->tab[1]));
 		write(2, ": No such file or directory.\n", 29);
 		mini->min = 1;
 	}

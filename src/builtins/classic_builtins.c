@@ -58,6 +58,7 @@ int	my_call_cd(t_mini *mini, node **head)
 		while (mini->tab[++i])
 			mini->tab[++j] = strdup(mini->tab[i]);
 		mini->tab[++j] = NULL;
+		mini->cd_d = 1;
 	}
 	if (mini->tab[1] && mini->tab[2]) {
 		printf("cd: Too many arguments.\n");
@@ -67,6 +68,7 @@ int	my_call_cd(t_mini *mini, node **head)
 	if ((*head) == NULL)
 		my_env(mini, head);
 	mini->global = new_cd(mini, head);
+	mini->cd_d = 0;
 	return (mini->global);
 }
 

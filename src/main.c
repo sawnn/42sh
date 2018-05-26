@@ -63,6 +63,7 @@ int	main(NOU int ac, NOU char **av, char **env)
 
 	if ((mini.shell = malloc(sizeof(t_shell))) == NULL)
 		return (84);
+	mini.cd_d = 0;
 	mini.exitt = 0;
 	mini.bool = 0;
 	mini.old = NULL;
