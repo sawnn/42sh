@@ -97,7 +97,9 @@ char	*get_next_line(int);
 //			LIB			//
 
 
-
+//		*BONUS*			//
+/*WHITHOUT_ENV.C*/
+void	get_simple_env(node **);
 
 //		*BUILTINS*		//
 

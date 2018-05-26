@@ -24,6 +24,8 @@ void	check_signals(void)
 int	minishell(t_mini *mini, node **head)
 {
 	my_env(mini, head);
+	if (*head == NULL)
+		get_simple_env(head);
 	while (1337) {
 		my_prompt(mini, head);
 		if (mini->buf == NULL)
