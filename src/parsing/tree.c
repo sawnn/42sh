@@ -47,7 +47,7 @@ int	find_bigger(char **tab)
 {
 	int i = -1;
 	int j = -1;
-	char *ope[6] = {";", "&&", "||", ">", "<", NULL};
+	char *ope[8] = {";", "&&", "||", ">", ">>", "<", "<<", NULL};
 
 	if (!tab)
 		return (-1);
@@ -106,7 +106,7 @@ int	put_double_in(char *name)
 	do {
 		if (str)
 			free(str);
-		write(1, "? ", 1);
+		write(1, "? ", 2);
 		if ((strcmp((str = get_next_line(0)), name) != 0)) {
 			write(fd, str, strlen(str));
 			write(fd, "\n", 1);
@@ -197,7 +197,7 @@ char	**check_null(char **tab)
 int	check_ope(char *op)
 {
 	int i = -1;
-	char *tab[6] = {";", "&&", "||", ">", "<", NULL};
+	char *tab[8] = {";", "&&", "||", ">", "<", "<<", ">>", NULL};
 
 	if (!op)
 		return (0);
@@ -213,31 +213,30 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 {
 	char **tmp = malloc(sizeof(char *));
 	int j = 0;
-	char **tmp2;
 
 	if (i == -1) {
 		(*list)->cmd = cmd->left;
 		return (0);
 	}
 	(*list)->op = strdup(cmd->left[i]);
-	if (cmd->left[i + 1]) {
-		tmp2 = &cmd->left[i + 1];
-		tmp[0] = strdup(cmd->left[i + 1]);
-		tmp[1] = NULL;
-		while (check_ope(cmd->left[i + 2])) {
-			cmd->left[i] = cmd->left[i + 2];
-			i++;
-		}
-		while (cmd->left[i + 2]) {
-			tmp = realloc(tmp, sizeof(char *) * (j + 4));
-			tmp[++j] = strdup(cmd->left[i + 2]);
-			tmp[j + 1] = NULL;
-			i++;
-		}
-		if (check_r((*list)->op) && strcmp("||", (*list)->op) && strcmp("&&", (*list)->op))
+	if (cmd->left[i + 1] && check_ope(cmd->left[i + 1])) {
+		if (check_r((*list)->op) == 0 && strcmp("||", (*list)->op) && strcmp("&&", (*list)->op)) {
+			tmp[0] = strdup(cmd->left[i + 1]);
+			tmp[1] = NULL;
+			while (check_ope(cmd->left[i + 2])) {
+				cmd->left[i] = cmd->left[i + 2];
+				i++;
+			}
+			while (cmd->left[i + 2]) {
+				tmp = realloc(tmp, sizeof(char *) * (j + 4));
+				tmp[++j] = strdup(cmd->left[i + 2]);
+				tmp[j + 1] = NULL;
+				i++;
+			}
 			cmd->right[cmd->r] = tmp;
+		}
 		else
-			cmd->right[cmd->r] = tmp2;
+			cmd->right[cmd->r] = &cmd->left[i + 1];
 		cmd->right[cmd->r] = move_para(cmd->right[cmd->r]);
 		cmd->r += 1;
 		cmd->right = realloc(cmd->right, sizeof(char **) * (cmd->r + 1));
@@ -267,7 +266,8 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 	//while (cmd->left[++j])
 	//	printf("%s\n", cmd->left[j]);
 	else
-		put_tree(list, cmd, i);
+		if (put_tree(list, cmd, i))
+			return (1);
 	return (0);
 	//*list = (*list)->parent;
 	//while ((*list)->parent)
@@ -332,9 +332,6 @@ void	tree(char **str, t_mini *mini)
 	t_cmd cmd;
 	t_tree *list = malloc(sizeof(t_tree));
 
-	//i = -1;
-	//while (str[++i])
-	//	printf("%s\n", str[i]);
 	str = move_para(str);
 	i = find_bigger(str);
 	fill_cmd(&cmd, str);
@@ -388,6 +385,7 @@ void	tree(char **str, t_mini *mini)
 	while (list->parent)
 		list = list->parent;
 	//printf("%s\n", list->left->cmd[0]);
+	//view(list);
 	viewlist(list, cmd, mini);
 	if (mini->bool == 1) {
 		isatty(0) == 1 ? write(1, "exit\n", 5) : 0;
