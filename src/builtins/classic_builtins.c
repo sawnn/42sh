@@ -52,13 +52,11 @@ int	my_call_unsetenv(t_mini *mini, node **head)
 
 int	my_call_cd(t_mini *mini, node **head)
 {
-	int i = 1;
-	int j = 0;
+	int i = 1; int j = 0;
 	if (mini->tab[1] && strcmp(mini->tab[1], "--") == 0 && mini->tab[2]) {
 		while (mini->tab[++i])
 			mini->tab[++j] = strdup(mini->tab[i]);
-		mini->tab[++j] = NULL;
-		mini->cd_d = 1;
+		mini->tab[++j] = NULL; mini->cd_d = 1;
 	}
 	if (mini->tab[1] && mini->tab[2]) {
 		if (strcmp(mini->tab[1], "-"))
@@ -68,15 +66,12 @@ int	my_call_cd(t_mini *mini, node **head)
 		else
 			mini->tab[2] = NULL;
 		if (mini->tab[2]) {
-			mini->global = 1;
-			return (mini->global);
+			mini->global = 1; return (mini->global);
 		}
 	}
 	if ((*head) == NULL)
 		my_env(mini, head);
-	mini->global = new_cd(mini, head);
-	mini->cd_d = 0;
-	return (mini->global);
+	mini->global = new_cd(mini, head);mini->cd_d = 0; return (mini->global);
 }
 
 int	is_bad_setenv(t_mini *mini)

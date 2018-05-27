@@ -32,12 +32,9 @@ int	my_cd_path(char *pwd, t_mini *mini, node **head)
 {
 	char	*oldpwd = malloc(sizeof(char) * 256);
 
-	if ((pwd = malloc(sizeof(char) * 256)) == NULL)
-		return (84);
-	if (oldpwd == NULL)
-		return (84);
-	getcwd(oldpwd, 256);
-	mini->old = oldpwd;
+	if ((pwd = malloc(sizeof(char) * 256)) == NULL) return (84);
+	if (oldpwd == NULL) return (84);
+	getcwd(oldpwd, 256); mini->old = oldpwd;
 	if (opendir(mini->tab[1]) != NULL) {
 		if (chdir(mini->tab[1]) == 0) {
 			getcwd(pwd, 256);

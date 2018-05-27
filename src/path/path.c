@@ -90,12 +90,7 @@ int	check_path(t_mini *mini, node **head, int no_path)
 
 int	which_exec(t_mini *mini)
 {
-	//if (!mini->cmd)
-	//	return (mini->global);
-	//else if (mini->cmd[1] == NULL)
 	my_exec(mini);
-	//else
-	//	my_exec_pipe(mini, mini->cmd);
 	return (mini->global);
 }
 

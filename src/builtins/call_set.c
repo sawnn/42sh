@@ -16,14 +16,13 @@ int	call_set(t_mini *mini, node **head)
 
 char	**check_dollar(char **tab, t_mini *mini)
 {
-	int i = -1;
-	int j = -1;
-	char *tmp;
+	int i = -1; int j = -1; char *tmp;
 
 	while (tab[++i]) {
 		while (tab[i][++j])
 			if (tab[i][j] == '$' && tab[i][j + 1]) {
-				tmp = dollars(&tab[i][j + 1], mini->shell->list, mini->head);
+				tmp = dollars(&tab[i][j + 1],
+					mini->shell->list, mini->head);
 				if (!tmp)
 					return (NULL);
 				tab[i][j] = '\0';

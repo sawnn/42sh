@@ -112,6 +112,7 @@ char	*my_epure_str(char *);
 char	*get_next_line(int);
 //			LIB			//
 
+int	alias_lenght(char **);
 
 //		*BONUS*			//
 /*WHITHOUT_ENV.C*/
