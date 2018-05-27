@@ -21,7 +21,7 @@ makelib :
 		(cd ./lib && make re)
 
 $(NAME) :
-	cp ./include/my_tree.h ./include/my_tree.a
+	cp ./include/my_tree.txt ./include/my_tree.a
 	gcc -g3 -Wall -Werror -Wextra -o $(NAME) $(SRC) -L ./lib -lmy ./include/my_tree.a
 
 clean:
@@ -30,7 +30,7 @@ clean:
 fclean:	clean
 	rm -rf $(NAME)
 	(cd ./lib && make fclean)
-	(cp ./include/my_tree.h ./include/my_tree.a)
+	(cp ./include/my_tree.txt ./include/my_tree.a)
 	(cd ./include && rm my_tree.a)
 
 re:	fclean all
