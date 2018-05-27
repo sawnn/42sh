@@ -11,6 +11,8 @@ int	size_tab(char **tab)
 {
 	int	a = -1;
 
+	if (!tab)
+		return (0);
 	while (tab[++a]);
 	return (a);
 }
@@ -20,6 +22,8 @@ char	**strdup_tab(char **tab)
 	int	a = -1;
 	char	**save = malloc(sizeof(char *) * size_tab(tab));
 
+	if (!tab)
+		return (NULL);
 	while (tab[++a])
 		save[a] = strdup(tab[a]);
 	return (save);

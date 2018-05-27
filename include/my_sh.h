@@ -37,6 +37,7 @@ typedef	struct	s_mini {
 	char	*buf;
 	char	**exit;
 	char	**path;
+	char	**repeat;
 	char	*rpath;
 	char	*pwd;
 	char	*fullpath;
@@ -115,6 +116,9 @@ int	my_which(t_mini *, node **);
 
 /*WHERE.C*/
 int	my_where(t_mini *, node **);
+
+/*REPEAT.C*/
+int	repeat(t_mini *, node **);
 
 /*ALIAS.C*/
 int	alias_func(t_mini *, node **);
@@ -265,4 +269,7 @@ int	check_cmd(t_mini *, node **);
 int	my_exec(t_mini *);
 
 char	**strdup_tab(char **tab);
+int	size_tab(char **tab);
+int	is_num(char *str);
+
 #endif /*MY_MINISHELL_H_*/
