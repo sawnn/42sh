@@ -61,8 +61,11 @@ void	print_aliaszer(char **tab)
 {
 	int	a = -1;
 
-	while (tab[++a])
-		printf("%s ", tab[a]);
+	while (tab[++a]) {
+		if (a == 1)
+			printf(" ");
+		printf("%s", tab[a]);
+	}
 	printf("\n");
 }
 
