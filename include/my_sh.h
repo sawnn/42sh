@@ -198,6 +198,10 @@ int	is_path(t_mini *, node *, int);
 int	check_path(t_mini *, node **, int);
 int	which_exec(t_mini *);
 
+/*FULL_PATH.C*/
+void	strcat_all_path(t_mini *);
+void	take_full_path(t_mini *, node **);
+
 //		*PARSING*		//
 
 /*SCRIPT.C*/

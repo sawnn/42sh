@@ -1,0 +1,19 @@
+/*
+** EPITECH PROJECT, 2018
+** full_path
+** File description:
+** for zack where
+*/
+
+#include "../../include/my_sh.h"
+
+void	take_full_path(t_mini *mini, node **head)
+{
+	int	i = 0; node	*tmp = (*head);
+
+	while (tmp != NULL) {
+		if (my_strncmp(tmp->str, "PATH=", 5) == 0) {
+			mini->fullpath = strdup(tmp->str + 5);
+		}
+	}
+}

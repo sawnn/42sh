@@ -29,6 +29,33 @@ int	verif_null_tab(char **tab)
 		return (-1);
 	return (1);
 }
+
+char	*strcat_tab(char **tab)
+{
+	int	i = -1;
+	char	*str = malloc(sizeof(char) * 1);
+	str[0] = '\0';
+
+	while (tab[++i] != NULL) {
+		str = my_strcat(str, tab[i]);
+		str = my_strcat(str, " ");
+	}
+	printf("str = %s\n", str);
+	return (str);
+}
+
+char	*skip_word(char *str)
+{
+	int	i = 0;
+
+	while (str[i] != '\0') {
+		if (strncmp(&str[i], "if", 2) == 0)
+			return (&str[i + 2]);
+		i += 1;
+	}
+	return ("nttttm\n");
+}
+
 char	*take_inside_parentheses(char *str)
 {
 	int	i = 0;

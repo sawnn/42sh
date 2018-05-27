@@ -47,15 +47,14 @@ int	check_arg_if(char **tab)
 		i += 1;
 	}
 	printf("if: Expression Syntax.\n");
-	return (1);
+	return (-1);
 }
 
-int	heja(void)
+int	main(void)
 {
-	char	*tmp = "1 <= 2 ls";
-	char	*str = epur(take_inside_parentheses(epur(tmp)));
+	char	*str = skip_word(strcat_tab(tab));
 	char	**tab = my_str_to_word_tab_sep(str, ' ');
-
+	printf("Skip word la pute = %s\n", skip_word(str));
 	print_tab(tab);
 	printf("----------------------\n");
 	if (tab[0] == NULL) {
@@ -70,6 +69,7 @@ int	heja(void)
 		printf("if: Expression Syntax.\n");
 		return (0);
 	}
-	check_arg_if(tab);
+	if (check_arg_if(tab) == 1)
+		return (&tab[3]);
 	return (1);
 }
