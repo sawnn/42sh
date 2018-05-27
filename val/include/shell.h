@@ -19,9 +19,17 @@ typedef struct s_node
 	struct s_node *next;
 }		t_node;
 
+typedef struct s_quotes
+{
+	char *str;
+	int magic;
+	struct s_quotes *next;
+}
+
 typedef struct s_shell
 {
 	t_node *list;
+	t_quotes *quotes;
 }		t_shell;
 
 int	check_egual_tab(char **);

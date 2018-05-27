@@ -29,37 +29,42 @@ int	count_bracket(char *str)
 	return (nb);
 }
 
-char	*check(char *str)
+char	*check(char *str, int *index)
 {
-	int count = count_bracket(str);
-	char *tmp = malloc(sizeof(char) * my_strlen(str) - count + 1);
 	int i = 0;
 	int j = 0;
 
 	while (str[i]) {
-		if (str[i] != '{' && str[i] != '}') {
-			tmp[j] = str[i];
-			j += 1;
+		if (str[i] == '{')
+			j = i + 1;
+		if (str[i] == '}') {
+			str[i] = '\0';
+			*index = i;
+			return (&str[j]);
 		}
 		i += 1;
 	}
-	return (tmp);
+	return (str);
 }
 
 char	*dollars(char *str, t_set *list, node **head)
 {
-	t_set *tmp = list;
-	node *env = (*head);
+	t_set *tmp = list; node *env = (*head); int	index = 0;
 
-	str = check(str);
+	str = check(str, &index);
 	while (tmp) {
-		if (strcmp(tmp->op, str) == 0)
-			return (tmp->value);
+		if (strcmp(tmp->op, str) == 0) {
+			return ((index == 0) ? (tmp->value)
+				: (my_strcat(tmp->value, &str[index])));
+		}
 		tmp = tmp->next;
 	}
 	while (env) {
-		if (my_strncmp(env->str, str, my_strlen(str)) == 0)
-			return (after_char(env->str, '='));
+		if (my_strncmp(env->str, str, my_strlen(str)) == 0) {
+			return ((index == 0) ? (after_char(env->str, '='))
+				: (my_strcat(after_char(env->str, '='),
+					&str[index])));
+		}
 		env = env->next;
 	}
 	printf("%s: Undefined variable.\n", str);

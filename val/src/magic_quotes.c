@@ -51,9 +51,21 @@ void	magic_quotes(char *str)
 	}
 }
 
+void	print_tab(char **tab)
+{
+	int i = 0;
+
+	while (tab[i]) {
+		printf("[%s]\n", tab[i]);
+		i += 1;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	char *str = "ls `ls -la` ls `wdsadhoami`wfewqt4eqg s";
+	
 
-	magic_quotes(str);
+	
+	//magic_quotes(str);
 }
