@@ -50,10 +50,11 @@ int	check_arg_if(char **tab)
 	return (-1);
 }
 
-int	main(void)
+int	heja(void)
 {
-	char	*str = skip_word(strcat_tab(tab));
+	char	*str = "1 == 1 ls";// = skip_word(strcat_tab(tab));
 	char	**tab = my_str_to_word_tab_sep(str, ' ');
+
 	printf("Skip word la pute = %s\n", skip_word(str));
 	print_tab(tab);
 	printf("----------------------\n");
@@ -70,6 +71,6 @@ int	main(void)
 		return (0);
 	}
 	if (check_arg_if(tab) == 1)
-		return (&tab[3]);
+		return (-1);
 	return (1);
 }

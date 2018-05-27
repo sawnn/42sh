@@ -187,7 +187,8 @@ int	modulo_if(char **);
 char	*take_inside_parentheses(char *);
 int	is_num_for_if(char *);
 int	verif_null_tab(char **);
-int	length_tab(char **);
+char	*strcat_tab(char **);
+char	*skip_word(char *);
 
 //		*PATH*			//
 

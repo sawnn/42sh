@@ -9,7 +9,7 @@
 
 void	strcat_all_path(t_mini *mini)
 {
-	mini->fullpath = strdup('\0');
+	mini->fullpath = strdup("\0");
 	mini->fullpath = my_strcat(mini->fullpath, "/usr/local/bin/:");
 	mini->fullpath = my_strcat(mini->fullpath, "/usr/bin/:");
 	mini->fullpath = my_strcat(mini->fullpath, "/bin");
@@ -17,8 +17,8 @@ void	strcat_all_path(t_mini *mini)
 
 void	take_full_path(t_mini *mini, node **head)
 {
-	int	i = 0; node	*tmp = (*head);
-	int	is_path : 0;
+	node	*tmp = (*head);
+	int	is_path = 0;
 
 	while (tmp != NULL) {
 		if (my_strncmp(tmp->str, "PATH=", 5) == 0) {
