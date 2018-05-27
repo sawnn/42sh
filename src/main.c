@@ -29,21 +29,29 @@ int	minishell(t_mini *mini, node **head)
 		get_simple_env(head);
 	while (1337) {
 		my_prompt(mini, head);
-		if (mini->buf == NULL)
-			return (buff_null(mini));
-		mini->buf = is_inibhitor(mini->buf);
+		//if (mini->buf == NULL)
+			//	return (buff_null(mini));
+		//mini->buf = is_inibhitor(mini->buf);
 		/*if (parse_quote(mini->buf) == 84) {
 			mini->buf[0] = '\0';
 			mini->global = 1;
 			}*/
-		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
-			continue;
+		//if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
+		//	continue;
+		if (mini->buf == NULL)
+			return (0);
 		mini->tab = my_str_to_word_array(mini->buf);
-		//mini->tab = check_dollar(mini->tab, mini);
+		int i = -1;
+		printf("coomand->>>> \n");
 		if (mini->tab) {
-			mini->b_ali = strdup_tab(mini->tab);
-			mini->tab = replace_alias(mini->tab, mini);
+			while (mini->tab[++i])
+				printf("%s\n", mini->tab[i]); 
 		}
+		//mini->tab = check_dollar(mini->tab, mini);
+		//if (mini->tab) {
+		//	mini->b_ali = strdup_tab(mini->tab);
+		//	mini->tab = replace_alias(mini->tab, mini);
+		//}
 		//int i = -1;
 		//while (mini->tab[++i])
 		//	printf("%s\n", mini->tab[i]);
@@ -51,10 +59,10 @@ int	minishell(t_mini *mini, node **head)
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
 		// checker les guillemet #zack
-		mini->head = head;
-		save_env(mini, head);
-		if (mini->tab && mini->tab[0])
-			tree(mini->tab, mini);
+		//mini->head = head;
+		//save_env(mini, head);
+		//if (mini->tab && mini->tab[0])
+		//	tree(mini->tab, mini);
 	}
 	return (mini->global);
 }

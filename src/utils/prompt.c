@@ -30,19 +30,19 @@ char	*get_prompt(NOU node *list)
 	return (prompt);
 }
 
-void	my_prompt(t_mini *mini, node **head)
+void	my_prompt(t_mini *mini, NOU node **head)
 {
-	int fd = mini->fd;
+//	int fd = mini->fd;
 
-	if (mini->fd == 0 && isatty(0) == 1)
-		my_printf(get_prompt((*head)));
-	mini->buf = get_next_line(mini->fd);
-	if (mini->buf && parse_quote(mini->buf) == 84) {
-                        mini->buf[0] = '\0';
-                        mini->global = 1;
-			return;
-		}
-	if (mini->buf && mini->buf[0] && mini->fd == 0)
+	//if (mini->fd == 0 && isatty(0) == 1)
+	//	my_printf(get_prompt((*head)));
+	mini->buf = get_next_line(0);
+	//if (mini->buf && parse_quote(mini->buf) == 84) {
+	//              mini->buf[0] = '\0';
+	//              mini->global = 1;
+	//		return;
+	//	}
+	/*if (mini->buf && mini->buf[0] && mini->fd == 0)
 		mini->fd = is_script(my_str_to_word_array(mini->buf)[0]);
 	if (mini->fd != fd)
 		mini->buf = get_next_line(mini->fd);
@@ -51,5 +51,6 @@ void	my_prompt(t_mini *mini, node **head)
 			if (isatty(0) == 1)
 				my_printf(get_prompt((*head)));
 		mini->buf = get_next_line(mini->fd);
-	}
+		}*/
+	
 }
