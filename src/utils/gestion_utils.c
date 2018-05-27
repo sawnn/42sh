@@ -7,6 +7,24 @@
 
 #include "../../include/my_sh.h"
 
+int	size_tab(char **tab)
+{
+	int	a = -1;
+
+	while (tab[++a]);
+	return (a);
+}
+
+char	**strdup_tab(char **tab)
+{
+	int	a = -1;
+	char	**save = malloc(sizeof(char *) * size_tab(tab));
+
+	while (tab[++a])
+		save[a] = strdup(tab[a]);
+	return (save);
+}
+
 int	is_bin(t_mini *mini)
 {
 	if (access(mini->tab[0], F_OK) == 0) {

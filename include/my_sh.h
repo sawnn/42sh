@@ -33,6 +33,7 @@ typedef	struct	s_node {
 typedef	struct	s_mini {
 	char	**tab;
 	char	**env;
+	char	**b_ali;
 	char	*buf;
 	char	**exit;
 	char	**path;
@@ -257,4 +258,6 @@ int	globa(int);
 /*CHECK_CMD.C*/
 int	check_cmd(t_mini *, node **);
 int	my_exec(t_mini *);
+
+char	**strdup_tab(char **tab);
 #endif /*MY_MINISHELL_H_*/

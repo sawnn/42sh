@@ -40,6 +40,7 @@ int	minishell(t_mini *mini, node **head)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
 		mini->tab = check_dollar(mini->tab, mini);
+		mini->b_ali = strdup_tab(mini->tab);
 		mini->tab = replace_alias(mini->tab, mini);
 		//int i = -1;
 		//while (mini->tab[++i])
@@ -48,7 +49,6 @@ int	minishell(t_mini *mini, node **head)
 		// cheeck si ya le nom d'un alias ou dune variable
 		//checker si ya des backsticks # valentin
 		// checker les guillemet #zack
-
 		mini->head = head;
 		save_env(mini, head);
 		if (mini->tab && mini->tab[0])
@@ -65,6 +65,7 @@ int	main(NOU int ac, NOU char **av, char **env)
 	if ((mini.shell = malloc(sizeof(t_shell))) == NULL)
 		return (84);
 	mini.alias = NULL;
+	mini.b_ali = NULL;
 	mini.cd_d = 0;
 	mini.exitt = 0;
 	mini.bool = 0;
