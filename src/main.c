@@ -40,8 +40,10 @@ int	minishell(t_mini *mini, node **head)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
 		mini->tab = check_dollar(mini->tab, mini);
-		mini->b_ali = strdup_tab(mini->tab);
-		mini->tab = replace_alias(mini->tab, mini);
+		if (mini->tab) {
+			mini->b_ali = strdup_tab(mini->tab);
+			mini->tab = replace_alias(mini->tab, mini);
+		}
 		//int i = -1;
 		//while (mini->tab[++i])
 		//	printf("%s\n", mini->tab[i]);
