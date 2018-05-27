@@ -43,14 +43,11 @@ char	**exec_glob(char **tab, glob_t globbuf)
 		}
 	}
 	return (globbuf.gl_pathv);
-//	execvp(tab[0], &globbuf.gl_pathv[0]);
 }
 
 char	**my_glob(char **tab)
 {
-	int	i = -1;
-	glob_t	globbuf = {};
-
+	int	i = -1; glob_t	globbuf = {};
 	globbuf.gl_offs = get_offs(tab);
 	while (tab[++i] != NULL)
 		if (is_glob(tab[i]) == 1)
