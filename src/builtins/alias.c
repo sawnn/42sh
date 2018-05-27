@@ -72,7 +72,6 @@ void	put_in_alias(char **tab, t_mini *mini)
 	int	c = 1;
 
 	while (++a != size) {
-		printf("%s\n", mini->b_ali[c]);
 		mini->alias[how][a] = strdup(mini->b_ali[c]);
 		c += 1;
 	}
