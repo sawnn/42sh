@@ -7,6 +7,16 @@
 
 #include "../../include/shell.h"
 
+void	printt(char **tab)
+{
+	int i = 0;
+
+	while (tab[i]) {
+		printf("[%s]\n", tab[i]);
+		i += 1;
+	}
+}
+
 int	count_tab(char **tab)
 {
 	int i = 0;
@@ -22,7 +32,7 @@ void	no_space(char *str, t_shell *sh)
 
 	if (check_egual(str) == 1)
 		return;
-	tab = my_str_to_wordtab(str, '=');
+	tab = my_str_to_word_tab_sep(str, '=');
 	if (tab[0] && tab[1])
 		sh->list = addd_link(sh->list, tab[0], tab[1]);
 }

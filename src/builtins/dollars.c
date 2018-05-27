@@ -53,10 +53,9 @@ char	*dollars(char *str, t_set *list, node **head)
 
 	str = check(str, &index);
 	while (tmp) {
-		if (strcmp(tmp->op, str) == 0) {
+		if (strcmp(tmp->op, str) == 0)
 			return ((index == 0) ? (tmp->value)
 				: (my_strcat(tmp->value, &str[index])));
-		}
 		tmp = tmp->next;
 	}
 	while (env) {
