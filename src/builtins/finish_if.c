@@ -50,7 +50,7 @@ int	do_if(t_mini *mini, int ret, char **tab)
 		return (0);
 	}
 	while ("Tu deuh le 42sh") {
-		put_msg(2, prompt);
+		put_msg(0, prompt);
 		if ((s = get_next_line(0)) != NULL) {
 			if (my_strcmp(s, "else") == 0) prompt = "else? ";
 			else if (my_strcmp(s, "endif") == 0) break;
