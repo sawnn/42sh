@@ -26,7 +26,7 @@ int	parse_quote(char *str)
 	char	*tmp = strdup(str);
 
 	while (tmp[++i] != 0) {
-		if (i > help && (tmp[i] == '"' || tmp[i] == '\'' || tmp[i] == '`')) {
+		if (i > help && (tmp[i + 1] != '\\') && (tmp[i] == '"' || tmp[i] == '\'' || tmp[i] == '`')) {
 			c = tmp[i];
 			if ((help = check_str(c, &tmp[i])) == -1) {
 				printf("Unmatched '%c'.\n", c);
