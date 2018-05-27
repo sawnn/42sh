@@ -32,9 +32,8 @@ int	check_arg_if(char **tab)
 
 	while (cmd[i] != NULL) {
 		if (strcmp(cmd[i], tab[1]) == 0) {
-			printf("return = %d\n", ret = call_func_if(i, tab));
+			ret = call_func_if(i, tab);
 			if (ret == 1) {
-				printf("Jexecute %s avec %s\n", tab[3], cmd[i]);
 				return (1);
 			}
 			if (ret == -1) {
@@ -50,14 +49,11 @@ int	check_arg_if(char **tab)
 	return (-1);
 }
 
-int	heja(void)
+int	call_if(t_mini *mini, node **head)
 {
-	char	*str = "1 == 1 ls";// = skip_word(strcat_tab(tab));
-	char	**tab = my_str_to_word_tab_sep(str, ' ');
+	char	*str = take_inside_parentheses(epur(skip_word(strcat_tab(mini->tab))));
+	char	**tab = my_str_to_word_tab_sep(epur(str), ' ');
 
-	printf("Skip word la pute = %s\n", skip_word(str));
-	print_tab(tab);
-	printf("----------------------\n");
 	if (tab[0] == NULL) {
 		printf("if: Too few arguments.\n");
 		return (0);
@@ -70,7 +66,10 @@ int	heja(void)
 		printf("if: Expression Syntax.\n");
 		return (0);
 	}
-	if (check_arg_if(tab) == 1)
-		return (-1);
-	return (1);
+	if (check_arg_if(tab) == 1) {
+		mini->tab = &tab[3];
+		check_cmd(mini, head);
+		return (mini->global = 0);
+	}
+	return (mini->global = 0);
 }

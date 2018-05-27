@@ -40,7 +40,6 @@ char	*strcat_tab(char **tab)
 		str = my_strcat(str, tab[i]);
 		str = my_strcat(str, " ");
 	}
-	printf("str = %s\n", str);
 	return (str);
 }
 
@@ -53,13 +52,12 @@ char	*skip_word(char *str)
 			return (&str[i + 2]);
 		i += 1;
 	}
-	return ("nttttm\n");
+	return ("ok");
 }
 
 char	*take_inside_parentheses(char *str)
 {
 	int	i = 0;
-	int	j = 0;
 
 	while (str[i] != '\0') {
 		if (str[i] == '(')
@@ -70,6 +68,5 @@ char	*take_inside_parentheses(char *str)
 		}
 		i += 1;
 	}
-	printf("inside () = %s\n", &str[j]);
 	return (str);
 }

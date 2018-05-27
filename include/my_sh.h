@@ -175,6 +175,9 @@ int	is_builtins(t_mini *, node **);
 
 /*IF.C*/
 void	print_tab(char **);
+int	call_func_if(int, char **);
+int	check_arg_if(char **);
+int	call_if(t_mini *, node **);
 
 /*FUNC_IF.C*/
 int	equal_if(char **);
