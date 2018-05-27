@@ -17,7 +17,7 @@ int	check_cmd(t_mini *mini, node **head)
 		mini->global = i;
 	else if (check_path(mini, head, 0) == 0) {
 		mini->head = head;
-		mini->global = which_exec(mini);
+		mini->is_exec == 0 ? mini->global = which_exec(mini) : 0;
 	}
 	else {
 		write(2, mini->tab[0], strlen(mini->tab[0]));

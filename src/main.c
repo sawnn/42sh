@@ -87,5 +87,6 @@ int	main(NOU int ac, NOU char **av, char **env)
 	mini.fd = 0;
 	mini.wh = 1;
 	mini.work = 1;
+	mini.is_exec = 0;
 	return (minishell(&mini, &head));
 }

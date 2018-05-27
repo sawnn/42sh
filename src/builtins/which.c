@@ -38,6 +38,7 @@ int	find_shell_built(char *str)
 int	my_which(t_mini *mini, NOU node **head)
 {
 	int	i = -1;
+	char	**tmp = strdup_tab(mini->tab);
 	if (!mini->tab[1]) {
 		write(2, "which: Too few arguments.\n", 26);
 		mini->global = 1;
@@ -47,20 +48,30 @@ int	my_which(t_mini *mini, NOU node **head)
 					mini->tab[1]) : 0;
 		mini->wh == 2 ? printf("%s is a shell built-in\n",
 					mini->tab[1]) : 0;
+		mini->global = 0;
 		return (0);
 	}
 	if (strcmp(mini->tab[0], "where") == 0)
 		return (0);
+	mini->is_exec = 1;
+	mini->tab = &mini->tab[1];
+	if (check_cmd(mini, head) > 0) {
+		mini->is_exec = 1;
+		return (mini->global);
+	}
+	mini->tab = tmp;
+	mini->is_exec = 1;
 	while (mini->alias && mini->alias[++i]) {
 		if (strcmp(mini->tab[1], mini->alias[i][1]) == 0) {
 			mini->wh == 1 ? printf("%s:      aliased to %s\n",
 				mini->b_ali[1], mini->alias[i][1]) : 0;
 			mini->wh == 2 ? printf("%s is aliased to %s\n",
 				mini->b_ali[1], mini->alias[i][1]) : 0;
+			mini->global = 0;
 			return (0);
 		}
 	}
 	mini->work = 0;
 	my_where(mini, head);
-	return (1);
+	return (mini->global);
 }

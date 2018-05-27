@@ -66,6 +66,7 @@ typedef	struct	s_mini {
 	t_shell *shell;
 	int	wh;
 	int	work;
+	int	is_exec;
 } t_mini;
 #include "shell.h"
 #include "tree.h"
