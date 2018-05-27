@@ -17,7 +17,7 @@
 
 #define READ_SIZE 1
 typedef struct s_arbre {
-        int val;
+	int val;
 	char *op;
 	char **cmd;
 	int bool;
