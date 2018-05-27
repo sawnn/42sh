@@ -23,7 +23,7 @@ char	*parsor_checker(int i, char *str)
 
 	fptr[0] = clear_string;
 	fptr[1] = check_parentheses;
-	fptr[3] = NULL;
+	fptr[2] = NULL;
 	return ((*fptr[i])(str));
 }
 

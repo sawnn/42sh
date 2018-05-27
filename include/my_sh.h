@@ -120,6 +120,9 @@ int	alias_lenght(char **);
 /*WHITHOUT_ENV.C*/
 void	get_simple_env(node **);
 
+//		*MAIN*			//
+int	foreach(t_mini *);
+
 //		*BUILTINS*		//
 
 /*WHICH.C*/
