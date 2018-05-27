@@ -17,7 +17,7 @@ int	my_where(t_mini *mini, NOU node **head)
 	mini->fullpath[0] == 'P' ? mini->fullpath += 5 : 0;
 	tab = my_str_to_word_tab_sep(mini->fullpath, ':');
 	mini->wh = 2;
-	my_which(mini, head);
+	mini->work == 1 ? my_which(mini, head) : (mini->work = 1);
 	mini->wh = 1;
 	while (tab && tab[++i] != NULL) {
 		tmp = my_strcat(tab[i], "/");

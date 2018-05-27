@@ -60,6 +60,7 @@ typedef	struct	s_mini {
 	int	fd;
 	t_shell *shell;
 	int	wh;
+	int	work;
 } t_mini;
 #include "shell.h"
 #include "tree.h"

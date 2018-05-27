@@ -56,5 +56,7 @@ int	my_which(t_mini *mini, NOU node **head)
 			return (0);
 		}
 	}
+	mini->work = 0;
+	my_where(mini, head);
 	return (1);
 }
