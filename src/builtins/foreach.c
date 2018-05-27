@@ -17,35 +17,16 @@ int	foreach(t_mini *mini)
 	if (vue == 2) {
 		a += 1;
 		if (a == 7 - 1) {
-			put_msg(1, "abb0");
+			put_msg(1, "aab0");
 			exit(0);
-		}
-		return (0);
+		} return (0);
 	}
-	if (vue == 0) {
-		while (mini->tab[i]) {
-			if (my_strcmp(mini->tab[i], tab[i]) == 0)
-				i += 1;
-			else {
-				return (-1);
-			}
-		}
-		vue = 2;
-		return (0);
+	while (mini->tab[i]) {
+		if (my_strcmp(mini->tab[i], tab[i]) == 0)
+			i += 1;
+		else
+			return (-1);
 	}
-	/*if (vue == 1) {
-		printf("zeerrrrma\n");
-		while (mini->tab[i]) {
-			if (my_strcmp(mini->tab[i], bis[i]) == 0)
-				i += 1;
-			else {
-				return (-1);
-				printf("different tab[%d] = %s bis = %s\n", i, mini->tab[i], bis[i]);
-			}
-		}
-		vue = 2;
-		printf("gros batard\n");
-		return (0);
-	}*/
+	vue = 2;
 	return (0);
 }
