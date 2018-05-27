@@ -7,9 +7,6 @@
 
 #include "../../include/my_sh.h"
 
-//en vrai osef mtn non ? //RAJOUTER VALUE DE RETURN POUR PARENTHESES SAVOIR SI YEN A OU PAS
-//FAIRE LE trUC QUI APEL TAB[3]
-
 int	is_num_for_if(char *str)
 {
 	int	i = 0;

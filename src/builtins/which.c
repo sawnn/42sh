@@ -60,7 +60,7 @@ int	check_which_error(t_mini *mini)
 		return (1);
 	} else if (find_shell_built(mini->tab[1]) > 0) {
 		mini->wh == 1 ? printf("%s: shell built-in command.\n",
-				 mini->tab[1]) : 0;
+				mini->tab[1]) : 0;
 		mini->wh == 2 ? printf("%s is a shell built-in\n",
 				mini->tab[1]) : 0;
 		mini->global = 0;

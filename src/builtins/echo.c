@@ -52,7 +52,6 @@ int	my_echo(t_mini *mini, NOU node **head)
 	char **tab = mini->tab;
 	int	len = len_tab(tab);
 
-	//if (head || !(head));
 	if (len < 2) {
 		write(1, "\n", 1);
 		return (0);
