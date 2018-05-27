@@ -288,6 +288,7 @@ int	globa(int);
 /*CHECK_CMD.C*/
 int	check_cmd(t_mini *, node **);
 int	my_exec(t_mini *);
+int     my_exec_pipe(t_mini *mini, char ***cmd);
 
 char	**strdup_tab(char **tab);
 int	size_tab(char **tab);

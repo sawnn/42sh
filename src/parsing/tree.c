@@ -139,6 +139,39 @@ int	check_r(char *op)
 	return (0);
 }
 
+int	is_pipe(char **tab)
+{
+	int i = -1;
+
+	while (tab[++i]) {
+		if (!strcmp(tab[i], "|"))
+			return (1);
+	}
+	return (0);
+}
+
+char	***double_to_tripe(char **tab)
+{
+	int i = -1;
+	int j = -1;
+	int x = 0;
+	char ***tab2 = malloc(sizeof(char**) * length_tab(tab) + 8);
+
+	tab2[x] = malloc(sizeof(char *) * length_tab(tab) + 8);
+	while (tab[++i]) {
+		if (!strcmp(tab[i], "|")) {
+			tab2[x][++j] = NULL;
+			j = -1;
+			x++;
+			tab2[x] = malloc(sizeof(char *) * length_tab(tab) + 8);
+		} else
+			tab2[x][++j] = strdup(tab[i]);
+	}
+	tab2[x][++j] = NULL;
+	tab2[++x] = NULL;
+	return (tab2);	
+}
+
 int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 {
 	int j = 0;
@@ -169,7 +202,10 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 			return (1);
 		if (list->parent && !strcmp(list->parent->op, "||")) {
 			if (list->parent->val != 0) {
-				list->val= check_cmd(mini, mini->head); 
+				if (is_pipe(list->cmd))
+					list->val = my_exec_pipe(mini, double_to_tripe(list->cmd));
+				else
+					list->val= check_cmd(mini, mini->head); 
 				mini->global = list->val;
 				dup2(cmd.stdout, 1);
 				dup2(cmd.stdin, 0);
@@ -182,7 +218,10 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 			
 		} else if (list->parent && !strcmp(list->parent->op, "&&")) {
 			if (list->parent->val == 0) {
-				list->val= check_cmd(mini, mini->head);
+				if (is_pipe(list->cmd))
+					list->val = my_exec_pipe(mini, double_to_tripe(list->cmd));
+				else
+					list->val= check_cmd(mini, mini->head); 
 				mini->global = list->val;
 				dup2(cmd.stdout, 1);
 				dup2(cmd.stdin, 0);
@@ -192,7 +231,10 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 				list->val = list->parent->val;
 			
 		} else {
-			list->val= check_cmd(mini, mini->head);
+			if (is_pipe(list->cmd))
+				list->val = my_exec_pipe(mini, double_to_tripe(list->cmd));
+			else
+				list->val= check_cmd(mini, mini->head); 
 			mini->global = list->val;
 			dup2(cmd.stdout, 1);
 			dup2(cmd.stdin, 0);
