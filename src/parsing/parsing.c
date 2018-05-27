@@ -23,7 +23,6 @@ char	*parsor_checker(int i, char *str)
 
 	fptr[0] = clear_string;
 	fptr[1] = check_parentheses;
-	//fptr[2] = clear_semicolon;
 	fptr[3] = NULL;
 	return ((*fptr[i])(str));
 }

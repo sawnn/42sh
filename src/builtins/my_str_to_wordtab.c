@@ -40,7 +40,7 @@ char	**my_str_to_wordtab(char *str, char c)
 	while (str[cnt] && ++i < my_count_col(str, c)) {
 		n = 0;
 		my_tab[i] = malloc(sizeof(char) *
-				   my_count_ligne(str + cnt, c) + 2);
+				my_count_ligne(str + cnt, c) + 2);
 		while (str[cnt] != '\0' && str[cnt] != c) {
 			my_tab[i][n] = str[cnt];
 			cnt = cnt + 1;
