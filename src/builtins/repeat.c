@@ -15,7 +15,7 @@ int	repeat(t_mini *mini, NOU node **head)
 	int	c = 0;
 	mini->repeat = malloc(sizeof(char *) * size + 1);
 
-	if (size != 3) {
+	if (size < 3) {
 		write(2, "repeat: Too few arguments.\n", 27);
 		mini->global = 1;
 		return (mini->global);
