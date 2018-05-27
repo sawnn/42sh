@@ -91,7 +91,7 @@ int	put_out(char *name)
 
 int	put_double_out(char *name)
 {
-	int fd = open(name, 577, 432);
+	int fd = open(name, 1089, 432);
 
 	dup2(fd, 1);
         close(fd);
@@ -147,8 +147,10 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 	//si il ya, je vai le dup qui correspon en donnan le right;
 	//puis je vais a gauch pr executer
 	//puis je remonte sans repassé a droite
-	if (list->op && list->op[0] != ';' && is_redir(list->op, list->right->cmd) != 0)
-		list->val = 1; 
+	if (list->op && list->op[0] != ';' && is_redir(list->op, list->right->cmd) != 0) {
+		list->val = 1;
+		mini->global = 1;
+	}
 	if (list->left && list->val != 1) {
 		if (viewlist(list->left, cmd, mini))
 			return (1);
@@ -159,6 +161,7 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 		if ((mini->tab = check_dollar(mini->tab, mini)) == NULL)
 			return (1);
 		list->val= check_cmd(mini, mini->head);
+		mini->global = list->val;
 		dup2(cmd.stdout, 1);
 		dup2(cmd.stdin, 0);
 		if (list->parent)
@@ -244,7 +247,7 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 		cmd->right = realloc(cmd->right, sizeof(char **) * (cmd->r + 1));
 	} else if (check_r(cmd->left[i]) == 0 && check_ope(cmd->left[i + 1]) == 0) {
 		if (strcmp(cmd->left[i], "||") && (strcmp(cmd->left[i], "&&")))
-			write(2, "Missing name for redirect\n", 26);
+			write(2, "Missing name for redirect.\n", 27);
 		else
 			write(2, "Invalid null command.\n", 22);
 		return (1);
