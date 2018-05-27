@@ -204,8 +204,12 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 	if (list->op && !(strcmp(list->op, "&&"))) {
 		//if (list->right)
 		if (list->right->op) {
-			if (!strcmp(list->right->op, "||"))
-				list->right->val = 0;
+			if (!strcmp(list->right->op, "||")) {
+				if (list->val == 0)
+					list->right->val = 1;
+				else
+					list->right->val = 0;
+			}
 			else
 				list->right->val = list->val;
 		}
