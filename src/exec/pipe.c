@@ -18,8 +18,8 @@ int	cutt(int	*stdin, int *stdout, t_mini *mini)
 void	core_exec(t_mini *mini, char ***cmd)
 {
 	mini->tab = *cmd;
-	check_path(mini, mini->head, 0);
-	EXEC == -1 ? print_errno(mini) : 0;
+	check_cmd(mini, mini->head);
+	//EXEC == -1 ? print_errno(mini) : 0;
 
 }
 /*
@@ -27,7 +27,7 @@ void	core_exec(t_mini *mini, char ***cmd)
   {
   int	p[2]; int	fd_in = 0; pid_t	pid = 0;
   int	ret = 0; int	stdin = dup(0); int	stdout = dup(1);
-
+	
   while (*cmd != NULL) {
   pipe(p);
   (pid = fork()) == -1 ? exit(EXIT_FAILURE) : 0;
@@ -62,7 +62,9 @@ int	my_exec_pipe(t_mini *mini, char ***cmd)
 			if (*(cmd + 1) != NULL)
 				dup2(p[1], 1);
 			close(p[0]);
-			execvp(*(cmd)[0], *cmd);
+			mini->tab = *cmd;
+			check_cmd(mini, mini->head);
+			//execvp(*(cmd)[0], *cmd);
 			exit(EXIT_FAILURE);
 		}
 		else {
