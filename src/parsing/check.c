@@ -9,19 +9,13 @@
 
 char	*check_parentheses(char *str)
 {
-	char	*tmp = str;
-	int	i = 0;
-	int	left = 0;
+	char	*tmp = str; int	i = 0; int	left = 0;
 	int	right = 0;
-
 	while (tmp[i] != '\0') {
-		if (tmp[i] == '(')
-			left += 1;
-		if (tmp[i] == ')')
-			right += 1;
+		(tmp[i] == '(') ? left += 1 : 0;
+		(tmp[i] == ')') ? right += 1 : 0;
 		if (tmp[i] == ')' && left == 0) {
-			put_msg(2, "Too many )'s.\n");
-			return (NULL);
+			put_msg(2, "Too many )'s.\n"); return (NULL);
 		}
 		if (left == right) {
 			left -= 1;
@@ -30,10 +24,8 @@ char	*check_parentheses(char *str)
 		i += 1;
 	}
 	if (left != right) {
-		if (left > right)
-			put_msg(2, "Too many ('s.\n");
-		else
-			put_msg(2, "Too many )'s.\n");
+		(left > right) ? (put_msg(2, "Too many ('s.\n")) :
+			(put_msg(2, "Too many )'s.\n"));
 		return (NULL);
 	}
 	return (str);

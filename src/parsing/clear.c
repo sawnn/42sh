@@ -9,8 +9,8 @@
 
 char	*clear_semicolon(char *str)
 {
-	char	*new = NULL; int	i = 0;
-	int	j = 0; int	count = 0;	char	*tmp = strdup((str));
+	char *new = NULL; int i = 0;
+	int j = 0; int count = 0; char *tmp = strdup((str));
 
 	if ((new = malloc(sizeof(char) * my_strlen((tmp) + 1))) == NULL)
 		return (NULL);
@@ -33,8 +33,8 @@ char	*clear_semicolon(char *str)
 
 char	*clear_parentheses(char *str)
 {
-	char	*new = NULL; int	i = 0;
-	int	j = 0; int	count = 0;	char	*tmp = strdup((str));
+	char *new = NULL; int i = 0;
+	int j = 0; int count = 0; char *tmp = strdup((str));
 
 	if ((new = malloc(sizeof(char) * my_strlen((tmp) + 1))) == NULL)
 		return (NULL);
