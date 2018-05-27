@@ -6,9 +6,6 @@
 */
 
 #include "../../include/my_sh.h"
-#include "string.h"
-#define epur	my_epure_str
-#define	parent	take_inside_parentheses
 
 int	call_func_if(int i, char **tab)
 {
@@ -52,7 +49,7 @@ int	check_arg_if(char **tab)
 int	call_if(t_mini *mini, node **head)
 {
 	char	*str = parent(epur(skip_word(strcat_tab(mini->tab))));
-	char	**tab = my_str_to_word_tab_sep(epur(str), ' '); int	ret = 0;
+	char	**tab = my_str_to_word_tab_sep(epur(str), ' '); int ret = 0;
 
 	if (tab[0] == NULL) { put_msg(2, "if: Too few arguments.\n");
 		return (1);

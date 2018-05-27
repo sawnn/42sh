@@ -23,6 +23,8 @@
 #define FLAGS_OPEN_BIS S_IRGRP | S_IWGRP | S_IWUSR
 #define FLAGS_OPEN O_WRONLY | O_CREAT, S_IRUSR
 #define CMP my_strcmp(str, mini->tab[i + 1])
+#define epur    my_epure_str
+#define parent  take_inside_parentheses
 
 typedef	struct	s_node {
 	char	*str;

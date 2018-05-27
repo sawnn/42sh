@@ -76,8 +76,8 @@ int	my_call_cd(t_mini *mini, node **head)
 
 int	is_bad_setenv(t_mini *mini)
 {
-	char	*error = "setenv: Variable name must begin with a letter.\n";
-	char	*error2 = "setenv: Variable name must contain alphanumeric";
+	char *error = "setenv: Variable name must begin with a letter.\n";
+	char *error2 = "setenv: Variable name must contain alphanumeric";
 
 	if (mini->tab[1][0] >= '0' && mini->tab[1][0] <= '9') {
 		write(2, error, my_strlen(error));
