@@ -47,7 +47,7 @@ int	find_bigger(char **tab)
 {
 	int i = -1;
 	int j = -1;
-	char *ope[8] = {";", "&&", "||", "<", "<<", ">", ">>", NULL};
+	char *ope[9] = {";", "&&", "||", "|", "<", "<<", ">", ">>", NULL};
 
 	if (!tab)
 		return (-1);
@@ -134,7 +134,7 @@ int	check_r(char *op)
 {
 	if (strcmp(op, "||") && (strcmp(op, "&&"))
 	&& strcmp(op, "<") && (strcmp(op, ">")))
-		if (strcmp(op, ">>") && (strcmp(op, "<<")))
+		if (strcmp(op, ">>") && (strcmp(op, "<<")) && strcmp(op, "|"))
 			return (1);
 	return (0);
 }
@@ -148,6 +148,7 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 	//si il ya, je vai le dup qui correspon en donnan le right;
 	//puis je vais a gauch pr executer
 	//puis je remonte sans repassé a droite
+	//if (list->op && !strcmp(list->op, "|"));
 	if (list->op && list->op[0] != ';' && is_redir(list->op, list->right->cmd) != 0) {
 		j = 1;
 		list->val = 1;
@@ -186,8 +187,14 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 			} else
 				list->val = list->parent->val;
 			
-		} else
+		} else {
 			list->val= check_cmd(mini, mini->head);
+			mini->global = list->val;
+			dup2(cmd.stdout, 1);
+			dup2(cmd.stdin, 0);
+			if (list->parent)
+				list->parent->val = list->val;
+		}
 		
 	}
 //printf("%s\n", list->cmd[0]);
@@ -233,7 +240,7 @@ char	**check_null(char **tab)
 int	check_ope(char *op)
 {
 	int i = -1;
-	char *tab[4] = {";", "&&", "||",  NULL};
+	char *tab[5] = {";", "&&", "||", "|", NULL};
 
 	if (!op)
 		return (0);
@@ -280,8 +287,8 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 		cmd->right[cmd->r] = move_para(cmd->right[cmd->r]);
 		cmd->r += 1;
 		cmd->right = realloc(cmd->right, sizeof(char **) * (cmd->r + 1));
-	} else if (check_r(cmd->left[i]) == 0 && check_ope(cmd->left[i + 1]) == 0) {
-		if (strcmp(cmd->left[i], "||") && (strcmp(cmd->left[i], "&&")))
+	} else if (check_ope(cmd->left[i + 1]) == 0) {
+		if (strcmp(cmd->left[i], "||") && (strcmp(cmd->left[i], "&&")) && strcmp(cmd->left[i], "|"))
 			write(2, "Missing name for redirect.\n", 27);
 		else
 			write(2, "Invalid null command.\n", 22);
