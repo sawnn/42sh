@@ -67,12 +67,13 @@ void	malloc_alias(char **tab, t_mini *mini)
 void	put_in_alias(char **tab, t_mini *mini)
 {
 	static	int	how = 0;
-	int	size = size_tab(tab);
+	int	size = size_tab(tab)-1;
 	int	a = -1;
 	int	c = 1;
 
 	while (++a != size) {
-		mini->alias[how][a] = tab[c];
+		printf("%s\n", mini->b_ali[c]);
+		mini->alias[how][a] = strdup(mini->b_ali[c]);
 		c += 1;
 	}
 	how += 1;
