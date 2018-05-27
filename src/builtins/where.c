@@ -14,7 +14,7 @@ int	my_where(t_mini *mini, NOU node **head)
 	char	*tmp = NULL;
 
 	my_which(mini, head);
-	while (tab[++i] != NULL) {
+	while (tab && tab[++i] != NULL) {
 		tmp = strcat(tab[i], "/");
 		tmp = strcat(tmp, mini->tab[1]);
 		if (access(tmp, F_OK) == 0) {
