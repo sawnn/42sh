@@ -30,6 +30,11 @@ typedef	struct	s_node {
 } node;
 #include "shell.h"
 
+typedef	struct	s_ifstruct {
+	char	**tab;
+	struct	s_ifstruct	*next;
+} t_ifstruct;
+
 typedef	struct	s_mini {
 	char	**tab;
 	char	**env;
@@ -198,6 +203,10 @@ int	is_num_for_if(char *);
 int	verif_null_tab(char **);
 char	*strcat_tab(char **);
 char	*skip_word(char *);
+
+/*FINISH_IF.C*/
+t_ifstruct	*add_struct(t_ifstruct *, char *);
+int	do_if(t_mini *, int, char **);
 
 //		*PATH*			//
 

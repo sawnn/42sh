@@ -8,6 +8,7 @@
 #include "../../include/my_sh.h"
 #include "string.h"
 #define epur	my_epure_str
+#define	parent	take_inside_parentheses
 
 int	call_func_if(int i, char **tab)
 {
@@ -33,11 +34,10 @@ int	check_arg_if(char **tab)
 	while (cmd[i] != NULL) {
 		if (strcmp(cmd[i], tab[1]) == 0) {
 			ret = call_func_if(i, tab);
-			if (ret == 1) {
+			if (ret == 1)
 				return (1);
-			}
 			if (ret == -1) {
-				printf("if: Expression Syntax.\n");
+				put_msg(2, "if: Expression Syntax.\n");
 				return (-1);
 			}
 			if (ret == 0)
@@ -45,31 +45,30 @@ int	check_arg_if(char **tab)
 		}
 		i += 1;
 	}
-	printf("if: Expression Syntax.\n");
+	put_msg(2, "if: Expression Syntax.\n");
 	return (-1);
 }
 
 int	call_if(t_mini *mini, node **head)
 {
-	char	*str = take_inside_parentheses(epur(skip_word(strcat_tab(mini->tab))));
-	char	**tab = my_str_to_word_tab_sep(epur(str), ' ');
+	char	*str = parent(epur(skip_word(strcat_tab(mini->tab))));
+	char	**tab = my_str_to_word_tab_sep(epur(str), ' '); int	ret = 0;
 
-	if (tab[0] == NULL) {
-		printf("if: Too few arguments.\n");
+	if (tab[0] == NULL) { put_msg(2, "if: Too few arguments.\n");
+		return (1);
+	} if (length_tab(tab) == 1) { put_msg(2, "if: Expression Syntax.\n");
 		return (0);
-	}
-	//if (verif_null_tab(tab) == -1) {
-	//	printf("jsuis null\n");
-	//	return (0);
-	//}
-	if (length_tab(tab) == 1) {
-		printf("if: Expression Syntax.\n");
-		return (0);
-	}
-	if (check_arg_if(tab) == 1) {
-		mini->tab = &tab[3];
+	} if (length_tab(tab) == 2) {
+		mini->tab = &tab[1];
 		check_cmd(mini, head);
 		return (mini->global = 0);
-	}
-	return (mini->global = 0);
+	} if ((ret = check_arg_if(tab) == 1) || ret == 0) {
+		if (my_strcmp(tab[3], "then") == 0) {
+			if (do_if(mini, ret, &tab[3]) == 1)
+				tree(mini->tab, mini);
+		} else {
+			mini->tab = &tab[3];
+			tree(mini->tab, mini);
+		} return (mini->global);
+	} return (mini->global);
 }
