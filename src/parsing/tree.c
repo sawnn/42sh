@@ -282,8 +282,9 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i, t_mini *mini)
 		if (check_pipe(cmd->left))  {
 			write(2, "Invalid null command.\n", 22);
 			mini->global = 1;
+			return (1);
 		}
-		return (1);
+		return (0);
 	}
 	(*list)->op = strdup(cmd->left[i]);
 	if (strcmp((*list)->op, "||") == 0)
