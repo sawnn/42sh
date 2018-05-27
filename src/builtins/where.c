@@ -9,9 +9,7 @@
 
 int	my_where(t_mini *mini, NOU node **head)
 {
-	char	**tab = NULL;
-	int	i = -1;
-	char	*tmp = NULL;
+	char	**tab = NULL; int	i = -1; char	*tmp = NULL;
 
 	take_full_path(mini, head);
 	mini->fullpath[0] == 'P' ? mini->fullpath += 5 : 0;
