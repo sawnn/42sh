@@ -38,10 +38,10 @@ void	my_prompt(t_mini *mini, node **head)
 		my_printf(get_prompt((*head)));
 	mini->buf = get_next_line(mini->fd);
 	if (mini->buf && parse_quote(mini->buf) == 84) {
-                        mini->buf[0] = '\0';
-                        mini->global = 1;
-			return;
-		}
+		mini->buf[0] = '\0';
+		mini->global = 1;
+		return;
+	}
 	if (mini->buf && mini->buf[0] && mini->fd == 0)
 		mini->fd = is_script(my_str_to_word_array(mini->buf)[0]);
 	if (mini->fd != fd)
