@@ -12,7 +12,6 @@ int	foreach(t_mini *mini)
 	static	int	vue = 0;
 	int	i = 0;
 	char	*tab[5] = {"set", "val", "=", "0", NULL};
-	char	*bis[7] = {"foreach", "scen", "(", "a", "b", ")",  NULL};
 	static	int	a = 0;
 
 	if (vue == 2) {
@@ -27,21 +26,26 @@ int	foreach(t_mini *mini)
 		while (mini->tab[i]) {
 			if (my_strcmp(mini->tab[i], tab[i]) == 0)
 				i += 1;
-			else
+			else {
 				return (-1);
-		}
-		vue = 1;
-		return (0);
-	}
-	if (vue == 1) {
-		while (mini->tab[i]) {
-			if (my_strcmp(mini->tab[i], bis[i]) == 0)
-				i += 1;
-			else
-				return (-1);
+			}
 		}
 		vue = 2;
 		return (0);
 	}
-	return (1);
+	/*if (vue == 1) {
+		printf("zeerrrrma\n");
+		while (mini->tab[i]) {
+			if (my_strcmp(mini->tab[i], bis[i]) == 0)
+				i += 1;
+			else {
+				return (-1);
+				printf("different tab[%d] = %s bis = %s\n", i, mini->tab[i], bis[i]);
+			}
+		}
+		vue = 2;
+		printf("gros batard\n");
+		return (0);
+	}*/
+	return (0);
 }
