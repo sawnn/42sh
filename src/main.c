@@ -39,7 +39,7 @@ int	minishell(t_mini *mini, node **head)
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf)) == NULL)
 			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
-		mini->tab = check_dollar(mini->tab, mini);
+		//mini->tab = check_dollar(mini->tab, mini);
 		if (mini->tab) {
 			mini->b_ali = strdup_tab(mini->tab);
 			mini->tab = replace_alias(mini->tab, mini);
