@@ -31,6 +31,8 @@ int	minishell(t_mini *mini, node **head)
 		mini->buf = is_inibhitor(mini->buf);
 		if ((mini->buf = launch_checker_parsor(mini, mini->buf))== NULL)
 			continue;
+		if (my_script(mini) == 0)
+			continue;
 		mini->tab = my_str_to_word_array(mini->buf);
 		if (foreach(mini) == 0)
 			continue;

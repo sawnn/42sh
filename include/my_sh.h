@@ -293,4 +293,6 @@ char	**strdup_tab(char **tab);
 int	size_tab(char **tab);
 int	is_num(char *str);
 
+int	my_script(t_mini *);
+
 #endif /*MY_MINISHELL_H_*/
