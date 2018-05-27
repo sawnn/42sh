@@ -141,6 +141,7 @@ int	check_r(char *op)
 
 int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 {
+	int j = 0;
 	if (!list)
 		return (1);
 	//je check si ya une redir
@@ -148,10 +149,11 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 	//puis je vais a gauch pr executer
 	//puis je remonte sans repassé a droite
 	if (list->op && list->op[0] != ';' && is_redir(list->op, list->right->cmd) != 0) {
+		j = 1;
 		list->val = 1;
 		mini->global = 1;
 	}
-	if (list->left && list->val != 1) {
+	if (list->left && j == 0) {
 		if (viewlist(list->left, cmd, mini))
 			return (1);
 	}
@@ -160,25 +162,56 @@ int	viewlist(t_tree *list, t_cmd cmd, t_mini *mini)
 		mini->tab = list->cmd;
 		if ((mini->tab = check_dollar(mini->tab, mini)) == NULL)
 			return (1);
-		list->val= check_cmd(mini, mini->head);
-		mini->global = list->val;
-		dup2(cmd.stdout, 1);
-		dup2(cmd.stdin, 0);
-		if (list->parent)
-			list->parent->val = list->val;
+		if (list->parent && !strcmp(list->parent->op, "||")) {
+			if (list->parent->val != 0) {
+				list->val= check_cmd(mini, mini->head); 
+				mini->global = list->val;
+				dup2(cmd.stdout, 1);
+				dup2(cmd.stdin, 0);
+				if (list->parent)
+					list->parent->val = list->val;
+			} else {
+				list->val = 1;
+				list->parent->val = 1;
+			}
+			
+		} else if (list->parent && !strcmp(list->parent->op, "&&")) {
+			if (list->parent->val == 0) {
+				list->val= check_cmd(mini, mini->head);
+				mini->global = list->val;
+				dup2(cmd.stdout, 1);
+				dup2(cmd.stdin, 0);
+				if (list->parent)
+					list->parent->val = list->val;
+			} else
+				list->val = list->parent->val;
+			
+		} else
+			list->val= check_cmd(mini, mini->head);
+		
 	}
 //printf("%s\n", list->cmd[0]);
 	//else
 	//	printf("%s\n", list->op);;
 	//printf("%s\n", list->op);
-	if (list->op && !(strcmp(list->op, "&&")) && list->left->val == 0) {
+	if (list->op && !(strcmp(list->op, "&&"))) {
 		//if (list->right)
+		if (list->right->op) {
+			if (!strcmp(list->right->op, "||"))
+				list->right->val = 0;
+			else
+				list->right->val = list->val;
+		}
 		if (viewlist(list->right, cmd, mini))
 			return (1);
 		
 		
 	}
 	else if (list->op && !(strcmp(list->op, "||")) && list->left->val != 0) {
+		//if (list->right->op) {
+		//	list->right->val = list->val;
+		//	printf("%d\n", list->val);
+		//}
 		if (viewlist(list->right, cmd, mini))
 			return (1);
 	}
@@ -222,6 +255,8 @@ int	put_tree(t_tree **list, t_cmd *cmd, int i)
 		return (0);
 	}
 	(*list)->op = strdup(cmd->left[i]);
+	if (strcmp((*list)->op, "||") == 0)
+		(*list)->val = 1;
 //	printf("%s\n", cmd->left[i + 1]);
 	if (cmd->left[i + 1] && check_ope(cmd->left[i + 1])) {
 

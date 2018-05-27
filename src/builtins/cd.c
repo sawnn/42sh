@@ -47,9 +47,11 @@ int	my_cd_path(char *pwd, t_mini *mini, node **head)
 			mini->cd = 1;
 			return (0);
 		}
-		return (my_cd_path_fail_chdir(mini, oldpwd));
+		return (my_cd_path_opendir(mini));
 	}
-	return (my_cd_path_opendir(mini));
+	if (open(mini->tab[1], O_RDONLY) != -1)
+		return (my_cd_path_opendir(mini));
+	return (my_cd_path_fail_chdir(mini, oldpwd));
 }
 
 int	my_cd_classic(char *pwd, t_mini *mini, node **head)
