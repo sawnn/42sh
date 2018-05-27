@@ -10,8 +10,8 @@
 void	strcat_all_path(t_mini *mini)
 {
 	mini->fullpath = strdup("\0");
-	mini->fullpath = my_strcat(mini->fullpath, "/usr/local/bin/:");
 	mini->fullpath = my_strcat(mini->fullpath, "/usr/bin/:");
+	mini->fullpath = my_strcat(mini->fullpath, "/usr/local/bin/:");
 	mini->fullpath = my_strcat(mini->fullpath, "/bin");
 }
 

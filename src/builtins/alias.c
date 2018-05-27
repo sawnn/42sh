@@ -11,17 +11,29 @@ char	**replace_alias(char **tab, t_mini *mini)
 {
 	int	a = -1;
 	int	b = -1;
+	int	c = 0;
+	int	d = 0;
+	char	**save = malloc(sizeof(char *) * 1000);
 
 	if (mini->alias == NULL)
 		return (tab);
 	while (tab[++a]) {
+		b = -1;
+		save[d] = strdup(tab[a]);
 		while (mini->alias[++b] && mini->alias[b][0]) {
-			if ((strcmp(tab[a], mini->alias[b][0]) == 0))
-				tab[a] = strdup(mini->alias[b][1]);
+			if ((strcmp(tab[a], mini->alias[b][0]) == 0)) {
+				while (mini->alias[b][++c]) {
+					save[d] = strdup(mini->alias[b][c]);
+					d += 1;
+				}
+				c = 0;
+				continue;
+			}
 		}
+		d += 1;
 		b = -1;
 	}
-	return (tab);
+	return (save);
 }
 
 int	alias_lenght(char **tab)
@@ -37,13 +49,17 @@ int	alias_lenght(char **tab)
 void	malloc_alias(char **tab, t_mini *mini)
 {
 	static	int	how = 0;
+	int	size = size_tab(tab);
+	int	a = 0;
+	int	c = 1;
 
-	how == 0 ? (mini->alias = malloc(sizeof(char **) * 40)) : 0;
-	mini->alias[0] == NULL ? how = 0 : 0;
-	mini->alias[how] = malloc(sizeof(char *) * 3);
-	mini->alias[how][0] = malloc(sizeof(char) * strlen(tab[1]) + 3);
-	mini->alias[how][1] = malloc(sizeof(char) * strlen(tab[2]) + 3);
-	mini->alias[how][2] = NULL;
+	how == 0 ? (mini->alias = malloc(sizeof(char **) * 100)) : 0;
+	mini->alias[how] = malloc(sizeof(char *) * size + 1);
+	while (tab[c] && ++a != size) {
+		mini->alias[how][a] = malloc(sizeof(char) * strlen(tab[c]) + 3);
+		c += 1;
+	}
+	mini->alias[how][a] = NULL;
 	how += 1;
 	mini->alias[how] = NULL;
 }
@@ -51,9 +67,14 @@ void	malloc_alias(char **tab, t_mini *mini)
 void	put_in_alias(char **tab, t_mini *mini)
 {
 	static	int	how = 0;
+	int	size = size_tab(tab);
+	int	a = -1;
+	int	c = 1;
 
-	mini->alias[how][0] = tab[1];
-	mini->alias[how][1] = tab[2];
+	while (++a != size) {
+		mini->alias[how][a] = tab[c];
+		c += 1;
+	}
 	how += 1;
 }
 
@@ -61,8 +82,10 @@ void	print_aliaszer(char **tab)
 {
 	int	a = -1;
 
+	if (!tab)
+		return;
 	while (tab[++a]) {
-		if (a == 1)
+		if (a != 0)
 			printf(" ");
 		printf("%s", tab[a]);
 	}
@@ -73,7 +96,7 @@ void	print_alias(char ***tab)
 {
 	int	a = -1;
 
-	if (tab[0] == NULL)
+	if (!tab)
 		return;
 	while (tab[++a]) {
 		print_aliaszer(tab[a]);
@@ -90,8 +113,6 @@ int	alias_func(t_mini *mini, NOU node **head)
 	if (size == 1)
 		print_alias(mini->alias);
 	else if(!tab[2])
-		return (0);
-	else if (size > 3)
 		return (0);
 	else {
 		malloc_alias(tab, mini);

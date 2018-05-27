@@ -49,6 +49,6 @@ char	**my_str_to_wordtab(char *str, char c)
 		my_tab[i][++n] = 0;
 		cnt = cnt + 1;
 	}
-	my_tab[++i] = NULL;
+	my_tab[i] = NULL;
 	return (my_tab);
 }

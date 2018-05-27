@@ -59,6 +59,8 @@ typedef	struct	s_mini {
 	int	bool;
 	int	fd;
 	t_shell *shell;
+	int	wh;
+	int	work;
 } t_mini;
 #include "shell.h"
 #include "tree.h"

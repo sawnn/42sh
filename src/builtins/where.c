@@ -9,18 +9,21 @@
 
 int	my_where(t_mini *mini, NOU node **head)
 {
-	char	**tab = my_str_to_wordtab(mini->fullpath, ':');
+	char	**tab = NULL;
 	int	i = -1;
 	char	*tmp = NULL;
 
-	my_which(mini, head);
+	take_full_path(mini, head);
+	mini->fullpath[0] == 'P' ? mini->fullpath += 5 : 0;
+	tab = my_str_to_word_tab_sep(mini->fullpath, ':');
+	mini->wh = 2;
+	mini->work == 1 ? my_which(mini, head) : (mini->work = 1);
+	mini->wh = 1;
 	while (tab && tab[++i] != NULL) {
-		tmp = strcat(tab[i], "/");
-		tmp = strcat(tmp, mini->tab[1]);
+		tmp = my_strcat(tab[i], "/");
+		tmp = my_strcat(tmp, mini->tab[1]);
 		if (access(tmp, F_OK) == 0) {
 			printf("%s\n", tmp);
-			free(tmp);
-			return (0);
 		}
 		free(tmp);
 	}
