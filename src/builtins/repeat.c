@@ -23,12 +23,10 @@ int	repeat(t_mini *mini, NOU node **head)
 	}
 	rept = atoi(mini->tab[1]);
 	while (mini->tab[++a]) {
-		mini->repeat[c] = strdup(mini->tab[a]);
-		c += 1;
+		mini->repeat[c] = strdup(mini->tab[a]); c += 1;
 	}
 	mini->repeat[c] = NULL; mini->tab = mini->repeat;
 	while (rept != 0) {
-		mini->global = check_cmd(mini, head);
-		rept -= 1;
+		mini->global = check_cmd(mini, head); rept -= 1;
 	} return (mini->global);
 }
